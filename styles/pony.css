@@ -3,7 +3,7 @@
 .tails-of-equestria .part {background: linear-gradient(120deg, #ffd1e3, #d6f0ff);border-radius: 12px;padding: 10px;margin-bottom: 10px;box-shadow: 0 0 6px #ccc;}
 .tails-of-equestria .character-header .portrait img {width: 200px;height: 200px;border-radius: 10px;border: 2px solid #fff;box-shadow: 0 0 5px #aaa;}
 .tails-of-equestria .character-header .identity {flex: 2;padding-left: 10px;}
-.tails-of-equestria .character-header h1 input {font-family: "Comic Sans MS", cursive;height:50px;font-size: 1em;width: 100%;border: none;background: transparent;border-bottom: 2px solid #ccc;text-align: center;}
+.tails-of-equestria .character-header h1 input {font-family: "Comic Sans MS", cursive;height:50px;font-size:0.7em;;width: 100%;border: none;background: transparent;border-bottom: 2px solid #ccc;text-align: center;}
 .tails-of-equestria .grid {display: grid;gap: 4px;}
 .tails-of-equestria .grid-2col { grid-template-columns: 1fr 1fr; }
 .tails-of-equestria .grid-3col { grid-template-columns: repeat(3, 1fr); }
@@ -12,7 +12,7 @@
 .tails-of-equestria .roll-button {float:right;border: none;background: #ffe9a8;border-radius: 50%;padding: 4px 8px;cursor: pointer;transition: 0.2s;}
 .tails-of-equestria .roll-button:hover {background: #fff2c0;transform: scale(1.1);}
 .tails-of-equestria .character-bio textarea {width: 100%;min-height: 100px;resize: vertical;border-radius: 8px;border: 1px solid #ccc;padding: 6px;background: #fffafc;}
-.tails-of-equestria input, .tails-of-equestria select {color:#d5922f;border-radius: 6px;border: 1px solid #bbb;padding: 2px 4px;width: 100%;font-size: 0.9em;background: #fdfdfd;}
+.tails-of-equestria input, .tails-of-equestria select {color:#d5922f;border-radius: 6px;border: 1px solid #bbb;padding: 2px 4px;width: 100%;font-size: 0.9em;background: #fdfdfd;text-align: center;}
 .tails-of-equestria option {color:rgb(237 48 124)}
 .tails-of-equestria label {color:rgb(237 48 124);padding-top: 5px;}
 .tails-of-equestria .character-header  label {text-align: right;}
@@ -39,4 +39,4 @@
 .tails-of-equestria .list table {color:rgb(237 48 124);margin: 0; padding: 0}
 .tails-of-equestria .list table td{height: 40px}
 .tails-of-equestria .list table td.description{width: 330px}
-.tails-of-equestria .list table td.actions button{height: 40px; display:inline-block;i}
+.tails-of-equestria .list table td.actions button{height: 20px;display: inline-block;width: 25px;padding: 0;}

@@ -19,12 +19,13 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
     },
     dragDrop: [{ dragSelector: '[data-drag]', dropSelector: '.inventory-list' }], // Remplacer '.inventory-list' par votre sélecteur    tabGroups: { sheet: "inventory" },
     actions: {
-      editImage: PonyCharacterSheet.#onItemAction,
+      editImage: PonyCharacterSheet.#onEditImage,
       edit: PonyCharacterSheet.#onItemAction,
       use: PonyCharacterSheet.#onItemAction,
       delete: PonyCharacterSheet.#onItemAction,
       roll:PonyCharacterSheet.#onActorAction,
       addItem:PonyCharacterSheet.#onItemAction,
+      addMagic:PonyCharacterSheet.#onItemAction
     }
   };
 
@@ -120,6 +121,25 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
     });
   }
 
+  static async #onEditImage(event, target) {
+    const attr = target.dataset.edit;
+    const current = foundry.utils.getProperty(this.document, attr);
+    const { img } =
+        this.document.constructor.getDefaultArtwork?.(this.document.toObject()) ??
+        {};
+    const fp = new FilePicker({
+        current,
+        type: 'image',
+        redirectToRoot: img ? [img] : [],
+        callback: (path) => {
+            this.document.update({ [attr]: path });
+        },
+        top: this.position.top + 40,
+        left: this.position.left + 10,
+    });
+    return fp.browse();
+    }
+
 
 
 /* ==========================================================
@@ -136,6 +156,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
 
     const actor = this.actor;
     const action = target.dataset.action;
+
     if (!actor || !action) return;
 
     function getRandom(arr) {
@@ -146,7 +167,8 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
 
       // 🎲 --- LANCER DE JET ---
       case "roll": {
-        await this._generateRoll(actor, ability, value, type, itemId, image);
+        const stat =target.dataset.stat;
+        await this._generateRoll(actor, stat);
         break;
       }
 
@@ -244,18 +266,33 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
         return;
       }
 
-    case "addItem":{
-      event.preventDefault();
-      const newItem = {
-        name: "Nouvel objet",
-        type: "",
-        quantity: 1,
-        description: ""
-      };
-      const inventory = this.actor.system.inventory.slice();
-      inventory.push(newItem);
-      this.actor.update({ "system.inventory": inventory });
-    }
+      /* --- ➕ AJOUT D’UN OBJET --- */
+      case "addItem": {
+        const newItem = await Item.create({
+          name: "Nouvel objet",
+          type: "item",
+          system: {
+            type:"objet",
+            quantity: 1,
+            description: ""
+          }
+        }, { parent: actor });
+        return ui.notifications.info(`Objet "${newItem.name}" ajouté à ${actor.name}.`);
+      }
+
+      /* --- ✨ AJOUT D’UNE MAGIE --- */
+      case "addMagic": {
+        const newItem = await Item.create({
+          name: "Nouvelle magie",
+          type: "item",
+          system: {
+            type:"magie",
+            quantity: 1,
+            description: ""
+          }
+        }, { parent: actor });
+        return ui.notifications.info(`Magie "${newItem.name}" ajoutée à ${actor.name}.`);
+      }
 
       default:
         console.warn(`Action inconnue : ${action}`);
@@ -266,7 +303,43 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
 /* ==========================================================
 *  Action de la fiche de personnage
 * ========================================================== */ 
-  async _generateRoll(actor) {
+  /**
+ * Gère un jet de caractéristique (ex : Corps, Esprit, Charme)
+ * @param {Actor} actor - L'acteur qui fait le jet
+ * @param {string} stat - Le nom de la caractéristique (ex: "body")
+ */
+  async _generateRoll(actor, stat) {
+    const system = actor.system;
+    const label = stat.charAt(0).toUpperCase() + stat.slice(1);
+
+    // Tableau de correspondance dés
+    const diceMap = {
+      D4: 4,
+      D6: 6,
+      D8: 8,
+      D10: 10,
+      D12: 12,
+      D20: 20
+    };
+
+    // Récupération du dé associé
+    const statValue = system[stat];
+    const dieSides = diceMap[statValue?.toUpperCase()] ?? 6;
+
+    // Création du roll (Foundry v13)
+    const roll = new Roll(`1d${dieSides}`);
+
+    // ⚙️ Nouvelle syntaxe v13 : evaluate() sans options
+    await roll.evaluate();
+
+    // Affichage dans le chat
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor }),
+      flavor: `🎲 Jet de ${label} (${statValue || "D6"}) de ${actor.name}`,
+    });
+
+    // Debug
+    console.log(`${actor.name} lance ${statValue} (${dieSides} faces) :`, roll.total);
   }
 
 }

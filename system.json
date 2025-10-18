@@ -50,12 +50,23 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "regles",
+      "label": "Régles",
+      "type": "JournalEntry",
+      "path": "./pack/regles",
+      "system": "tails-of-equestria",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "url": "https://github.com/Vharung/liber",
   "manifest": "https://raw.githubusercontent.com/Vharung/tails-of-equestria/main/system.json",
   "download": "https://github.com/Vharung/tails-of-equestria/archive/refs/heads/main.zip",
-  "background": "systems/tails-of-equestria/assets/system/accueil.png",
+  "background": "systems/tails-of-equestria/assets/system/accueil.wepb",
   "grid":{
     "distance": 1,
     "units": "m"

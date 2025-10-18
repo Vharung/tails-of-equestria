@@ -42,15 +42,21 @@
 
       <div>
         <label>Amitié :</label>
-        {{formInput systemFields.friendship.fields.current name="system.friendship.current" value=system.friendship.current}}
-        {{formInput systemFields.friendship.fields.max name="system.friendship.max" value=system.friendship.max}}
+        <div class="grid grid-2col">
+          <div>
+            {{formInput systemFields.friendship.fields.current name="system.friendship.current" value=system.friendship.current}}
+          </div>
+          <div>
+            {{formInput systemFields.friendship.fields.max name="system.friendship.max" value=system.friendship.max}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Magie / Capacité -->
   <div class="part magie">
-  <h2>Magie / Capacité</h2>
+  <h2 style="height: 30px;">Magie / Capacité <button type="button" class="add-item add-button" data-action="addMagic">➕ Ajouter une magie</button></h2>
   <div class="list">
     <table class="magie-table">
       <thead>
@@ -79,6 +85,6 @@
       </tbody>
     </table>
   </div>
-    <button type="button" class="add-item add-button" data-action="addMagic">➕ Ajouter une magie</button>
+    
   </div>
 </div>
