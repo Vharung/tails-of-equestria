@@ -1,0 +1,42 @@
+/* === FICHE DE PERSONNAGE : TAILS OF EQUESTRIA === */
+
+.tails-of-equestria .part {background: linear-gradient(120deg, #ffd1e3, #d6f0ff);border-radius: 12px;padding: 10px;margin-bottom: 10px;box-shadow: 0 0 6px #ccc;}
+.tails-of-equestria .character-header .portrait img {width: 200px;height: 200px;border-radius: 10px;border: 2px solid #fff;box-shadow: 0 0 5px #aaa;}
+.tails-of-equestria .character-header .identity {flex: 2;padding-left: 10px;}
+.tails-of-equestria .character-header h1 input {font-family: "Comic Sans MS", cursive;height:50px;font-size: 1em;width: 100%;border: none;background: transparent;border-bottom: 2px solid #ccc;text-align: center;}
+.tails-of-equestria .grid {display: grid;gap: 4px;}
+.tails-of-equestria .grid-2col { grid-template-columns: 1fr 1fr; }
+.tails-of-equestria .grid-3col { grid-template-columns: repeat(3, 1fr); }
+.tails-of-equestria .stat,.tails-of-equestria .resources div {background: #fff;border-radius: 8px;padding: 5px;text-align: center;box-shadow: 0 1px 4px rgba(0,0,0,0.1);}
+.tails-of-equestria .stat label {display: block;font-weight: bold;}
+.tails-of-equestria .roll-button {float:right;border: none;background: #ffe9a8;border-radius: 50%;padding: 4px 8px;cursor: pointer;transition: 0.2s;}
+.tails-of-equestria .roll-button:hover {background: #fff2c0;transform: scale(1.1);}
+.tails-of-equestria .character-bio textarea {width: 100%;min-height: 100px;resize: vertical;border-radius: 8px;border: 1px solid #ccc;padding: 6px;background: #fffafc;}
+.tails-of-equestria input, .tails-of-equestria select {color:#d5922f;border-radius: 6px;border: 1px solid #bbb;padding: 2px 4px;width: 100%;font-size: 0.9em;background: #fdfdfd;}
+.tails-of-equestria option {color:rgb(237 48 124)}
+.tails-of-equestria label {color:rgb(237 48 124);padding-top: 5px;}
+.tails-of-equestria .character-header  label {text-align: right;}
+.tails-of-equestria h2 {color:rgb(237 48 124);font-size: 1.5em;margin:0}
+.tails-of-equestria prose-mirror{background: #ef97ba;color: #ed3b83;padding: 5px}
+/* === Onglets de fiche : TAILS OF EQUESTRIA === */
+.tails-of-equestria .sheet-tabs {display: flex;gap: 6px;padding: 6px 10px;background: linear-gradient(120deg, #ffd1e3, #d6f0ff);border-radius: 12px;box-shadow: 0 2px 6px rgba(0,0,0,0.1);margin-bottom:10px;}
+.tails-of-equestria .sheet-tabs .item {flex: 1;text-align: center;padding: 8px 12px;border-radius: 10px;font-family: "Comic Sans MS", cursive;font-weight: bold;font-size: 0.95em;color: #ed307c;background: rgba(255, 255, 255, 0.7);box-shadow: 0 1px 3px rgba(0,0,0,0.1);cursor: pointer;transition: all 0.2s;position: relative;}
+.tails-of-equestria .sheet-tabs .item.active {background: #ffe9a8;color: #d64f90;}
+.tails-of-equestria .sheet-tabs .item:hover {background: #fff2c0;transform: scale(1.05);color: #d64f90;}
+.tails-of-equestria .item-entry {background: #fff;padding: 6px;margin-bottom: 6px;border-radius: 8px;box-shadow: 0 1px 4px rgba(0,0,0,0.1);}
+.tails-of-equestria .item-entry label {font-weight: bold;display: block;margin-bottom: 2px;color: #ed307c;}
+.tails-of-equestria .inven{ height:294px }
+.tails-of-equestria .list{height: 228px; overflow: auto}
+.tails-of-equestria .add-button{float:right;}
+.tails-of-equestria .part.magie{height: 204px}
+.tails-of-equestria .part.magie table{height: 160px}
+
+.tails-of-equestria .item-entry {background: #fff;padding: 6px;margin-bottom: 6px;border-radius: 8px;box-shadow: 0 1px 4px rgba(0,0,0,0.1);}
+.tails-of-equestria .item-entry label {font-weight: bold;display: block;margin-bottom: 2px;color: #ed307c;}
+.tails-of-equestria .roll-button {border: none;background: #ffe9a8;border-radius: 50%;padding: 2px 6px;cursor: pointer; transition: 0.2s;}
+.tails-of-equestria .roll-button:hover { background: #fff2c0; transform: scale(1.1); }
+.tails-of-equestria .items h1 input{background: none; border: none; height: 60px}
+.tails-of-equestria .list table {color:rgb(237 48 124);margin: 0; padding: 0}
+.tails-of-equestria .list table td{height: 40px}
+.tails-of-equestria .list table td.description{width: 330px}
+.tails-of-equestria .list table td.actions button{height: 40px; display:inline-block;i}

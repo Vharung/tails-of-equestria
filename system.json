@@ -1,0 +1,63 @@
+{
+  "id": "tails-of-equestria",
+  "title": "Tails of Equestria",
+  "description": "The Tails of Equestria system for FoundryVTT !",
+  "authors": [
+    {
+      "name": "Vharung",
+      "discord": "Vharung"
+    }],
+  "version": "4.0.36",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "license": "MIT",
+  "esmodules": ["scripts/pony.js"],
+  "scripts": [],
+  "styles": ["styles/pony.css"],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+ "packs": [
+    { 
+      "name": "inventaire",
+      "label": "Inventaire",
+      "system": "tails-of-equestria",
+      "path": "./pack/inventaire",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    { 
+      "name": "talent",
+      "label": "Talents",
+      "system": "tails-of-equestria",
+      "path": "./pack/talent",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "url": "https://github.com/Vharung/liber",
+  "manifest": "https://raw.githubusercontent.com/Vharung/tails-of-equestria/main/system.json",
+  "download": "https://github.com/Vharung/tails-of-equestria/archive/refs/heads/main.zip",
+  "background": "systems/tails-of-equestria/assets/system/accueil.png",
+  "grid":{
+    "distance": 1,
+    "units": "m"
+  }
+}

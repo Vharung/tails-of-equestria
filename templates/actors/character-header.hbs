@@ -1,0 +1,26 @@
+<div class="character-header flexrow part">
+  <div class="portrait">
+    <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+  </div>
+
+  <div class="identity">
+    <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Nom du personnage" /></h1>
+
+    <div class="grid grid-2col">
+      <label>Race :</label>
+      {{formField systemFields.race name="system.race" value=system.race localize=true type="select"}}
+
+      <label>Niveau :</label>
+      {{formInput systemFields.level name="system.level" value=system.level localize=true}}
+    </div>
+
+    <div class="grid grid-2col">
+      <label>Marque / Talent :</label>
+      {{formInput systemFields.talent name="system.talent" value=system.talent localize=true}}
+
+      <label>Défaut :</label>
+      {{formInput systemFields.flaw name="system.flaw" value=system.flaw localize=true}}
+
+    </div>
+  </div>
+</div>

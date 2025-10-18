@@ -1,0 +1,47 @@
+<div id="items" class="tab character-bio" data-group="sheet" data-tab="items">
+  <!-- Notes / Histoire -->
+  <div class="part">
+    <h2>Notes / Histoire :</h2>
+    {{formInput
+      systemFields.biography
+      name="system.biography"
+      value=system.biography
+    }}
+  </div>
+
+  <!-- Inventaire -->
+  <div class="part inven">
+    <h2>Inventaire</h2>
+
+    <div class="list">
+     <table class="magie-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th class="actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each items as |item index|}}
+            {{#if (eq item.system.type "objet")}}
+              <tr class="item-entry" data-item-id="{{item._id}}">
+                <td class="name">{{item.name}}</td>
+                <td class="type">{{item.type}}</td>
+                <td class="description">{{stripTags item.system.description}}</td>
+                <td class="actions">
+                  <button type="button" class="item-action" data-action="edit" title="Modifier" data-item-id="{{item._id}}">✏️</button>
+                  <button type="button" class="item-action" data-action="use" title="Utiliser" data-item-id="{{item._id}}">🎲</button>
+                  <button type="button" class="item-action" data-action="delete" title="Supprimer" data-item-id="{{item._id}}">❌</button>
+                </td>
+              </tr>
+            {{/if}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <button type="button" class="add-item add-button" data-action="addItem">➕ Ajouter un objet</button>
+  </div>
+</div>

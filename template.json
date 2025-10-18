@@ -1,0 +1,14 @@
+{
+  "Actor": {
+    "types": ["character", "pnj","monstre"],
+    "character": {
+    },
+    "pnj": {
+    },
+    "monstre": {}
+  },
+  "Item": {
+    "types": ["item"],
+    "item": {}
+  }
+}

@@ -1,0 +1,84 @@
+<div id="carac" class="tab character-main" data-group="sheet" data-tab="carac">
+
+  <!-- Caractéristiques -->
+  <div class="part">
+    <h2>Caractéristiques</h2>
+    <div class="stats grid grid-3col">
+      <div class="stat">
+        <label>Corps</label>
+        {{formField systemFields.body name="system.body" value=system.body localize=true type="select"}}
+        <button data-action="roll" data-stat="body" class="roll-button">🎲</button>
+      </div>
+
+      <div class="stat">
+        <label>Esprit</label>
+        {{formField systemFields.mind name="system.mind" value=system.mind localize=true type="select"}}
+        <button data-action="roll" data-stat="mind" class="roll-button">🎲</button>
+      </div>
+
+      <div class="stat">
+        <label>Charme</label>
+        {{formField systemFields.charm name="system.charm" value=system.charm localize=true type="select"}}
+        <button data-action="roll" data-stat="charm" class="roll-button">🎲</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ressources -->
+  <div class="part">
+    <h2>Ressources</h2>
+    <div class="resources grid grid-2col">
+      <div>
+        <label>Robustesse :</label>
+        <div class="grid grid-2col">
+          <div>
+            {{formInput systemFields.robustness.fields.current name="system.robustness.current" value=system.robustness.current}}
+          </div>
+          <div>
+            {{formInput systemFields.robustness.fields.max name="system.robustness.max" value=system.robustness.max}}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>Amitié :</label>
+        {{formInput systemFields.friendship.fields.current name="system.friendship.current" value=system.friendship.current}}
+        {{formInput systemFields.friendship.fields.max name="system.friendship.max" value=system.friendship.max}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Magie / Capacité -->
+  <div class="part magie">
+  <h2>Magie / Capacité</h2>
+  <div class="list">
+    <table class="magie-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th class="actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each items as |item index|}}
+          {{#if (eq item.system.type "magie")}}
+            <tr class="item-entry" data-item-id="{{item._id}}">
+              <td class="name">{{item.name}}</td>
+              <td class="type">{{item.type}}</td>
+              <td class="description">{{item.system.description}}</td>
+              <td class="actions">
+                <button type="button" class="item-action" data-action="edit" title="Modifier" data-item-id="{{item._id}}">✏️</button>
+                <button type="button" class="item-action" data-action="use" title="Utiliser" data-item-id="{{item._id}}">🎲</button>
+                <button type="button" class="item-action" data-action="delete" title="Supprimer" data-item-id="{{item._id}}">❌</button>
+              </td>
+            </tr>
+          {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+    <button type="button" class="add-item add-button" data-action="addMagic">➕ Ajouter une magie</button>
+  </div>
+</div>

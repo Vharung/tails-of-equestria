@@ -1,0 +1,24 @@
+{
+	"TYPES": {
+	    "Actor": {
+	      "character": "Personnage",
+	      "pnj": "PNJ",
+	      "monstre": "Monstre"
+	    },
+	    "Item": {
+	      "item": "Objet",
+	      "armor": "Armure",
+	      "weapon": "Arme",
+	      "magic": "Sort"
+	    }
+	  },
+	  "Pony": {
+	    "Character": {
+
+	    },
+	    "Labels":{
+	    	"carac":"Stastitiques",
+	    	"items":"Histoire et inventaire"
+	    }
+	}
+}
