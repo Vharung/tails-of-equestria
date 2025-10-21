@@ -12,7 +12,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
     form: { submitOnChange: true },
     window: {
       resizable: true,
-      title: "Fiche de personnage", // <- titre de la fenêtre
+      title: "Fiche de personnage ", // <- titre de la fenêtre
       id: "pony-character-sheet",   // <- identifiant unique
       frame: true,                  // <- force la création d’une fenêtre
       icon: "fa-solid fa-horse",    // <- facultatif
@@ -41,51 +41,126 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
 
   /** Préparation des données */
   async _prepareContext() {
-    // 🔹 Choix valides
-    const choicesRace = ["poney","licorne","pégase","griffon","dragon","hypogriffe","changelin","yack"];
-    const choicesStat = ["d4","d6","d8","d10","d12"];
+  // 🔹 Référence au système de données
+  const system = this.document.system;
 
-    // 🔹 Référence au système de données
-    const system = this.document.system;
+  // 🔹 Liste complète des races jouables (selon ton tableau)
+  const raceData = {
+        "bison": {
+          body: "d12", mind: "d6", charm: "d6", robustness: 18,
+          talents: ["Charge (D8)", "Peau Épaisse (D4)"],
+          quirks: ["Fier - Haut égard de soi ; crée des tensions sociales."]
+        },
+        "changelin": {
+          body: "d4", mind: "d4", charm: "d4", robustness: 8,
+          talents: ["Métamorphose (D6)", "Télékinésie (D4)", "Cœur Robuste (D4)", "Vol (D4)"],
+          quirks: ["Affamé d’Amour - Besoin d’émotions ; comportement manipulateur."]
+        },
+        "chat": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Griffes (D6)", "Furtivité (D6)"],
+          quirks: ["Égoïste - Méfiant en groupe."]
+        },
+        "chien de diamant": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Fouissage (D6)", "Pistage (D6)"],
+          quirks: ["Avide - Obsédé par les gemmes."]
+        },
+        "cristal pony": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Cœur Robuste (D6)", "Télékinésie (D6)", "Vol (D6)"],
+          quirks: ["Cœur de Cristal - Dépend de ses émotions."]
+        },
+        "dragon": {
+          body: "d8", mind: "d4", charm: "d4", robustness: 12,
+          talents: ["Vol (D6)", "Souffle de Feu (D6)"],
+          quirks: [
+            "Avidité du Dragon - Croît en taille si avide.",
+            "Oooohhh... Brillant ! - Distrait par objets précieux."
+          ]
+        },
+        "griffon": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Vol (D6)", "Griffes (D6)"],
+          quirks: ["Égoïste - Difficile en équipe."]
+        },
+        "hippogriffe": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Vol (D6)", "Honorable (D6)", "Natation (D10 en forme sirène)"],
+          quirks: ["Protecteur - Obsession de sécurité."]
+        },
+        "kirin": {
+          body: "d6", mind: "d6", charm: "d8", robustness: 12,
+          talents: ["Télékinésie (D6)", "Cœur de Kirin (D6)"],
+          quirks: ["Nirik - Transformation enragée ; doit choisir un quirk supplémentaire."]
+        },
+        "livre magique": {
+          body: "d4", mind: "d8", charm: "d6", robustness: 12,
+          talents: ["Savant Livresque (D6)", "Message (D6)", "Vol (D4)"],
+          quirks: ["Vulnérabilité : Feu (D6)"]
+        },
+        "perroquet": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Vol (D6)", "Imitation (D6)"],
+          quirks: ["Bavard - Trop loquace."]
+        },
+        "pégase": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Vol (D6)", "Manipulation des Nuages (D6)"],
+          quirks: ["Compétitif - Crée des conflits inutiles."]
+        },
+        "poney de terre": {
+          body: "d8", mind: "d6", charm: "d6", robustness: 14,
+          talents: ["Cœur Robuste (D6)", "Poney Polyvalent (D6)"],
+          quirks: ["Rustique - Moins réceptif à la magie."]
+        },
+        "licorne": {
+          body: "d4", mind: "d8", charm: "d6", robustness: 12,
+          talents: ["Télékinésie (D6)", "Sorts avancés (optionnels)"],
+          quirks: ["Arrogant - Trop fier de la magie."]
+        },
+        "reptilien": {
+          body: "d8", mind: "d4", charm: "d6", robustness: 12,
+          talents: ["Natation (D8)", "Peau Épaisse (D6)"],
+          quirks: ["Froid - Peu sociable."]
+        },
+        "yack": {
+          body: "d10", mind: "d6", charm: "d4", robustness: 16,
+          talents: ["Artisanat (D6)", "Peau Épaisse (D4)", "Massif (D4)"],
+          quirks: ["Pointilleux - Obsédé par la perfection."]
+        }
+      };
 
-    // 🔹 Convertir race si c'est un index
-    if (typeof system.race === "number") system.race = choicesRace[system.race] ?? "poney";
+      // 🔹 Récupère la race actuelle du personnage
+      const raceKey = (system.race ?? "").toLowerCase();
 
-    // 🔹 Convertir body/mind/charm si ce sont des indices
-    if (typeof system.body === "number") system.body = choicesStat[system.body] ?? "d6";
-    if (typeof system.mind === "number") system.mind = choicesStat[system.mind] ?? "d6";
-    if (typeof system.charm === "number") system.charm = choicesStat[system.charm] ?? "d6";
+      // 🔹 Si la race existe dans le tableau
+      if (raceData[raceKey]) {
+        const data = raceData[raceKey];
+        system.body = data.body;
+        system.mind = data.mind;
+        system.charm = data.charm;
+        system.robustness.max = data.robustness;
+        system.talentsBase = data.talents;
+        system.quirksBase = data.quirks;
+      }
 
-    // 🔹 Ajuste les PV max selon la race
-    const race = system.race?.toLowerCase() ?? "poney terrestre";
+      // 🔹 Ne pas dépasser le max
+      if (system.robustness.current > system.robustness.max)
+        system.robustness.current = system.robustness.max;
 
-    switch (race) {
-      case "poney terrestre": system.robustness.max = 12; break;
-      case "licorne": system.robustness.max = 10; break;
-      case "pégase": system.robustness.max = 10; break;
-      case "griffon": system.robustness.max = 11; break;
-      case "dragon": system.robustness.max = 14; break;
-      case "hypogriffe": system.robustness.max = 11; break;
-      case "changelin": system.robustness.max = 9; break;
-      case "yack": system.robustness.max = 13; break;
-      default: system.robustness.max = 10;
+      // 🔹 Retourne le contexte pour le template
+      return {
+        tabs: this.#getTabs(),
+        fields: this.document.schema.fields,
+        systemFields: system.schema.fields,
+        actor: this.document,
+        system,
+        source: this.document.toObject(),
+        items: this.document.items.toObject()
+      };
     }
 
-    // 🔹 Ne pas dépasser le max
-    if (system.robustness.current > system.robustness.max)
-      system.robustness.current = system.robustness.max;
-
-    // 🔹 Retourne le contexte pour le template
-    return {
-      tabs: this.#getTabs(),
-      fields: this.document.schema.fields,
-      systemFields: system.schema.fields,
-      actor: this.document,
-      system: system,
-      source: this.document.toObject(),
-      items: this.document.items.toObject()
-    };
-  }
 
 
 
@@ -269,10 +344,9 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
       /* --- ➕ AJOUT D’UN OBJET --- */
       case "addItem": {
         const newItem = await Item.create({
-          name: "Nouvel objet",
+          name: game.i18n.localize("Pony.Character.Sheet.Objet"),
           type: "item",
           system: {
-            type:"objet",
             quantity: 1,
             description: ""
           }
@@ -283,15 +357,26 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
       /* --- ✨ AJOUT D’UNE MAGIE --- */
       case "addMagic": {
         const newItem = await Item.create({
-          name: "Nouvelle magie",
+          name: game.i18n.localize("Pony.Character.Sheet.Talent"),
           type: "item",
           system: {
-            type:"magie",
-            quantity: 1,
+            dice: "d4",
             description: ""
           }
         }, { parent: actor });
-        return ui.notifications.info(`Magie "${newItem.name}" ajoutée à ${actor.name}.`);
+        return ui.notifications.info(`Talent "${newItem.name}" ajoutée à ${actor.name}.`);
+      }
+      /* --- ✨ AJOUT D’UNE MAGIE --- */
+      case "addDefaut": {
+        const newItem = await Item.create({
+          name: game.i18n.localize("Pony.Character.Sheet.Faiblesse"),
+          type: "item",
+          system: {
+            dice: "d4",
+            description: ""
+          }
+        }, { parent: actor });
+        return ui.notifications.info(`Defaut "${newItem.name}" ajoutée à ${actor.name}.`);
       }
 
       default:
@@ -331,11 +416,11 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
 
     // ⚙️ Nouvelle syntaxe v13 : evaluate() sans options
     await roll.evaluate();
-
+    const jet=game.i18n.localize("Pony.Character.Sheet.Jet");
     // Affichage dans le chat
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor }),
-      flavor: `🎲 Jet de ${label} (${statValue || "D6"}) de ${actor.name}`,
+      flavor: `🎲 ${jet} ${label} (${statValue || "D6"}) de ${actor.name}`,
     });
 
     // Debug

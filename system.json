@@ -42,7 +42,7 @@
     },
     { 
       "name": "talent",
-      "label": "Talents",
+      "label": "Talents / Faiblesse",
       "system": "tails-of-equestria",
       "path": "./pack/talent",
       "type": "Item",
@@ -61,12 +61,23 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "monstre",
+      "label": "Monstres",
+      "system": "tails-of-equestria",
+      "path": "./pack/monstre",
+      "type": "Actor",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "url": "https://github.com/Vharung/liber",
   "manifest": "https://raw.githubusercontent.com/Vharung/tails-of-equestria/main/system.json",
   "download": "https://github.com/Vharung/tails-of-equestria/archive/refs/heads/main.zip",
-  "background": "systems/tails-of-equestria/assets/system/accueil.wepb",
+  "background": "systems/tails-of-equestria/assets/accueil.webp",
   "grid":{
     "distance": 1,
     "units": "m"

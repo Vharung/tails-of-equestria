@@ -5,23 +5,34 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
 
     return {
       /** 🔹 Informations générales */
-      name: new fields.StringField({ required: true, initial: "Nouveau personnage" }),
+      name: new fields.StringField({ required: true, initial: game.i18n.localize("Pony.Character.Data.New") }),
+      marque: new fields.StringField({ required: true, initial: "icons/svg/mystery-man.svg" }),
+      harmony: new fields.StringField({ required: true, initial: "" }),
       race: new fields.StringField({
         required: true,
         initial: RACE.poney,
         choices: {
-          [RACE.poney]:"poney",
-          [RACE.licorne]:"licorne",
-          [RACE.pegase]:"pegase",
-          [RACE.griffon]:"griffon",
-          [RACE.dragon]:"dragon",
-          [RACE.hypogryffe]:"hypogriffe",
-          [RACE.changelin]:"changelin",
-          [RACE.yack]:"yack"
+          [RACE.bison]:game.i18n.localize("Pony.Character.Data.Race.Bison"),
+          [RACE.changelin]:game.i18n.localize("Pony.Character.Data.Race.Changelin"),
+          [RACE.chat]:game.i18n.localize("Pony.Character.Data.Race.Chat"),
+          [RACE.chien]:game.i18n.localize("Pony.Character.Data.Race.Chien"),
+          [RACE.chat]:game.i18n.localize("Pony.Character.Data.Race.Cristal"),
+          [RACE.dragon]:game.i18n.localize("Pony.Character.Data.Race.Dragon"),
+          [RACE.griffon]:game.i18n.localize("Pony.Character.Data.Race.Griffon"),
+          [RACE.hypogriffe]:game.i18n.localize("Pony.Character.Data.Race.Hippogriffe"),
+          [RACE.kirin]:game.i18n.localize("Pony.Character.Data.Race.Kirin"),
+          [RACE.livre]:game.i18n.localize("Pony.Character.Data.Race.Livre"),
+          [RACE.livre]:game.i18n.localize("Pony.Character.Data.Race.Papillon"),
+          [RACE.pegase]:game.i18n.localize("Pony.Character.Data.Race.Pegasse"),          
+          [RACE.poney]:game.i18n.localize("Pony.Character.Data.Race.Poney"),
+          [RACE.licorne]:game.i18n.localize("Pony.Character.Data.Race.Licorne"),
+          [RACE.reptilien]:game.i18n.localize("Pony.Character.Data.Race.Reptilien"),
+          [RACE.yack]:game.i18n.localize("Pony.Character.Data.Race.Yack"),
+          [RACE.zebre]:game.i18n.localize("Pony.Character.Data.Race.Zebre")
         }
       }),
       biography: new fields.HTMLField({ required: false, blank: true, initial: "", textSearch: true }),
-      level: new fields.NumberField({ required: true, initial: 1, integer: true, min: 1, max: 10 }),
+      level: new fields.NumberField({ required: true, initial: 1, min: 1}),
       cutieMark: new fields.StringField({ initial: "" }),
       talent: new fields.StringField({ initial: "" }),
       flaw: new fields.StringField({ initial: "" }),
@@ -80,43 +91,5 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
       /** 🔹 Notes / historique */
       notes: new fields.HTMLField({ initial: "" })
     };
-  }
-
-  /** Ajuste les PV max selon la race */
-  prepareBaseData() {
-    const race = this.race?.toLowerCase() ?? "poney terrestre";
-
-    switch (race) {
-      case "poney terrestre":
-        this.robustness.max = 12;
-        break;
-      case "licorne":
-        this.robustness.max = 10;
-        break;
-      case "pégase":
-        this.robustness.max = 10;
-        break;
-      case "griffon":
-        this.robustness.max = 11;
-        break;
-      case "dragon":
-        this.robustness.max = 14;
-        break;
-      case "hypogriffe":
-        this.robustness.max = 11;
-        break;
-      case "changelin":
-        this.robustness.max = 9;
-        break;
-      case "yack":
-        this.robustness.max = 13;
-        break;
-      default:
-        this.robustness.max = 10;
-    }
-
-    // S’assurer que les PV actuels ne dépassent pas le max
-    if (this.robustness.current > this.robustness.max)
-      this.robustness.current = this.robustness.max;
   }
 }

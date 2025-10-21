@@ -1,26 +1,35 @@
-<div class="character-header flexrow part">
-  <div class="portrait">
-    <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" data-action="editImage"/>
+<div class="character-header">
+  <div class="identity part">
+      <h1><input name="name" type="text" value="{{actor.name}}"/></h1>
+      <div class="grid grid-2col">
+        <div>
+          <div class="grid grid-2col">
+            <label>{{localize 'Pony.Character.Header.Race'}}</label>
+            {{formField systemFields.race name="system.race" value=system.race localize=true type="select"}}
+          </div>
+          <div class="grid grid-2col">
+            <label>{{localize 'Pony.Character.Header.Niveau'}}</label>
+            {{formInput systemFields.level name="system.level" value=system.level localize=true}}
+          </div>
+        </div>
+        <div>
+          <label>{{localize 'Pony.Character.Header.Harmony'}}</label>
+          {{formInput systemFields.harmony name="system.harmony" value=system.harmony localize=true}}
+        </div>
+      </div
+    </div>
   </div>
-
-  <div class="identity">
-    <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Nom du personnage" /></h1>
-
-    <div class="grid grid-2col">
-      <label>Race :</label>
-      {{formField systemFields.race name="system.race" value=system.race localize=true type="select"}}
-
-      <label>Niveau :</label>
-      {{formInput systemFields.level name="system.level" value=system.level localize=true}}
-    </div>
-
-    <div class="grid grid-2col">
-      <label>Marque / Talent :</label>
-      {{formInput systemFields.talent name="system.talent" value=system.talent localize=true}}
-
-      <label>Défaut :</label>
-      {{formInput systemFields.flaw name="system.flaw" value=system.flaw localize=true}}
-
-    </div>
+  <div class="friendly">
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <path id="textArc" d="M 30,100 A 70,70 0 0,1 170,100" />
+      </defs>
+      <text font-size="25" fill="white">
+        <textPath href="#textArc" startOffset="50%" text-anchor="middle">
+          Amitié
+        </textPath>
+      </text>
+    </svg>
+    {{formInput systemFields.friendship.fields.current name="system.friendship.current" value=system.friendship.current}}
   </div>
 </div>

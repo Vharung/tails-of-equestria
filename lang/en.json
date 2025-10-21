@@ -1,3 +1,36 @@
 {
-	
+	"TYPES": {
+	    "Actor": {
+	      "character": "Personnage",
+	      "pnj": "PNJ",
+	      "monstre": "Monstre"
+	    },
+	    "Item": {
+	      "item": "Objet",
+	      "armor": "Armure",
+	      "weapon": "Arme",
+	      "magic": "Sort"
+	    }
+	  },
+	  "Pony": {
+	    "Character": {
+	    	"Header":{
+	    		"Race":"Race",
+	    		"Niveau":"Niveau",
+	    		"Harmony":"Element d'harmonie"
+	    	},
+	    	"Main":{
+	    		"Robustesse":"Robustesse",
+	    		"Corps":"Corps",
+	    		"Esprit":"Esprit",
+	    		"Charme":"Charme",
+	    		"Talent":"Talent",
+	    		"Defaut":"Défaut"
+	    	}
+	    },
+	    "Labels":{
+	    	"carac":"Stastitiques",
+	    	"items":"Histoire et inventaire"
+	    }
+	}
 }

@@ -7,14 +7,62 @@
 	    },
 	    "Item": {
 	      "item": "Objet",
-	      "armor": "Armure",
-	      "weapon": "Arme",
-	      "magic": "Sort"
+	      "talent": "Talent",
+	      "faiblesse": "Faiblesse"
 	    }
 	  },
 	  "Pony": {
 	    "Character": {
-
+	    	"Data":{
+	    		"New":"Nouveau personnage",
+	    		"Race":{
+	    			"Bison":"Bison",
+	    			"Changelin":"Changelin",
+	    			"Chat":"Chat / Abyssinien",
+	    			"Chien":"Chien de Diamant ",
+	    			"Cristal":"Poney de cristal",
+	    			"Dragon":"Dragon",
+	    			"Griffon":"Griffon",
+	    			"Hippogriffe":"Hippogriffe  / Sirène",
+	    			"Kirin":"Kirin",
+	    			"Livre":"Livre Magique",
+	    			"Papillon":"Papillon - Pirate",
+	    			"Pegasse":"Pegasse",
+	    			"Poney":"Poney Terrestre",
+	    			"Licorne":"Licorne",
+	    			"Reptilien":"Reptilien",
+	    			"Yack":"Yack",
+	    			"Zebre":"Zébre"
+	    		}
+	    	},
+	    	"Sheet":{
+	    		"Fiche":"Fiche de personnage",
+	    		"Objet":"Nouvel Objet",
+	    		"Talent":"Nouveau Talent",
+	    		"Faiblesse":"Nouvelle Faiblesse",
+	    		"Jet":"Jet de"
+	    	},
+	    	"Header":{
+	    		"Race":"Race",
+	    		"Niveau":"Niveau",
+	    		"Harmony":"Element d'Harmony"
+	    	},
+	    	"Main":{
+	    		"Robustesse":"Robustesse",
+	    		"Corps":"Corps",
+	    		"Esprit":"Esprit",
+	    		"Charme":"Charme",
+	    		"Talent":"Talent",
+	    		"Defaut":"Défaut",
+	    		"Marque":"Marque de beauté"
+	    	},
+	    	"Biography":{
+	    		"Story":"Notes / Histoire",
+	    		"Inventaire":"Inventaire",
+	    		"Modifier":"Modifier",
+	    		"Utiliser":"Utiliser",
+	    		"Supprimer":"Supprimer"
+	    	}
 	    },
 	    "Labels":{
 	    	"carac":"Stastitiques",

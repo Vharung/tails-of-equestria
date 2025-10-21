@@ -1,42 +1,91 @@
+@font-face {font-family: "pony";src: url('Equestria-yJY2.ttf'); }
 /* === FICHE DE PERSONNAGE : TAILS OF EQUESTRIA === */
+:root {
+    --couleur-rose: #fbb4de;
+    --couleur-roseclair:#fbb3dd; 
+    --couleur-bleu: #bbe9f0; 
+    --couleur-amitie:#f237a6;
+    --couleur-blanc:#fff;
+    --couleur-violet:#5d447b;
+    --couleur-violetclair:#dccbe3;
+    --couleur-violetmoyen:#dabfe2;
+    --couleur-rosemoyen:#fbc6e6;
+    --degrade:linear-gradient(120deg, #ffd1e3, #d6f0ff);
 
-.tails-of-equestria .part {background: linear-gradient(120deg, #ffd1e3, #d6f0ff);border-radius: 12px;padding: 10px;margin-bottom: 10px;box-shadow: 0 0 6px #ccc;}
-.tails-of-equestria .character-header .portrait img {width: 200px;height: 200px;border-radius: 10px;border: 2px solid #fff;box-shadow: 0 0 5px #aaa;}
+}
+.tails-of-equestria {background: #ffffff7a}
+.tails-of-equestria .part {border-radius: 12px;padding: 10px;margin-bottom: 10px;box-shadow: 0 0 6px #ccc;}
 .tails-of-equestria .character-header .identity {flex: 2;padding-left: 10px;}
-.tails-of-equestria .character-header h1 input {font-family: "Comic Sans MS", cursive;height:50px;font-size:0.7em;;width: 100%;border: none;background: transparent;border-bottom: 2px solid #ccc;text-align: center;}
+.tails-of-equestria .character-header h1 input {color:var(--couleur-violet);font-family: "pony", cursive;height:40px;font-size:0.6em;width: 100%;border: none;background: transparent;border-bottom: 2px solid var(--couleur-rose);text-align: center;}
 .tails-of-equestria .grid {display: grid;gap: 4px;}
 .tails-of-equestria .grid-2col { grid-template-columns: 1fr 1fr; }
 .tails-of-equestria .grid-3col { grid-template-columns: repeat(3, 1fr); }
-.tails-of-equestria .stat,.tails-of-equestria .resources div {background: #fff;border-radius: 8px;padding: 5px;text-align: center;box-shadow: 0 1px 4px rgba(0,0,0,0.1);}
+.tails-of-equestria .grid-5col { grid-template-columns: repeat(5, 1fr); }
+.tails-of-equestria .stat,.tails-of-equestria .resources div {border-radius: 8px;padding: 5px;text-align: center;box-shadow: 0 1px 4px rgba(0,0,0,0.1);}
+.tails-of-equestria .stat {height: 120px;}
 .tails-of-equestria .stat label {display: block;font-weight: bold;}
+.tails-of-equestria .stat select{margin-top: 10px; background:var(--couleur-rose);margin-bottom: 5px}
 .tails-of-equestria .roll-button {float:right;border: none;background: #ffe9a8;border-radius: 50%;padding: 4px 8px;cursor: pointer;transition: 0.2s;}
 .tails-of-equestria .roll-button:hover {background: #fff2c0;transform: scale(1.1);}
 .tails-of-equestria .character-bio textarea {width: 100%;min-height: 100px;resize: vertical;border-radius: 8px;border: 1px solid #ccc;padding: 6px;background: #fffafc;}
-.tails-of-equestria input, .tails-of-equestria select {color:#d5922f;border-radius: 6px;border: 1px solid #bbb;padding: 2px 4px;width: 100%;font-size: 0.9em;background: #fdfdfd;text-align: center;}
+.tails-of-equestria input, .tails-of-equestria select {color:var(--couleur-violet);border-radius: 6px;border: 1px solid #bbb;padding: 2px 4px;width: 100%;font-size: 1em;background: #fdfdfd;text-align: center;}
 .tails-of-equestria option {color:rgb(237 48 124)}
-.tails-of-equestria label {color:rgb(237 48 124);padding-top: 5px;}
+.tails-of-equestria label {color:rgb(237 48 124);padding-top: 5px;font-family: "pony";font-size: 1.2em}
 .tails-of-equestria .character-header  label {text-align: right;}
 .tails-of-equestria h2 {color:rgb(237 48 124);font-size: 1.5em;margin:0}
-.tails-of-equestria prose-mirror{background: #ef97ba;color: #ed3b83;padding: 5px}
+.tails-of-equestria prose-mirror{background: #ef97ba;color: #ed3b83;padding: 5px;height: 210px}
 /* === Onglets de fiche : TAILS OF EQUESTRIA === */
-.tails-of-equestria .sheet-tabs {display: flex;gap: 6px;padding: 6px 10px;background: linear-gradient(120deg, #ffd1e3, #d6f0ff);border-radius: 12px;box-shadow: 0 2px 6px rgba(0,0,0,0.1);margin-bottom:10px;}
-.tails-of-equestria .sheet-tabs .item {flex: 1;text-align: center;padding: 8px 12px;border-radius: 10px;font-family: "Comic Sans MS", cursive;font-weight: bold;font-size: 0.95em;color: #ed307c;background: rgba(255, 255, 255, 0.7);box-shadow: 0 1px 3px rgba(0,0,0,0.1);cursor: pointer;transition: all 0.2s;position: relative;}
+.tails-of-equestria .sheet-tabs {display: flex;gap: 6px;border-radius: 12px;border:none;margin-bottom:10px;margin-top: 20px;}
+.tails-of-equestria .sheet-tabs .item {flex: 1;text-align: center;border-radius: 10px;font-family: "pony", cursive;font-weight: bold;font-size: 1.6em;color: #ed307c;background: var(--degrade);box-shadow: 0 1px 3px rgba(0,0,0,0.1);cursor: pointer;transition: all 0.2s;position: relative;}
 .tails-of-equestria .sheet-tabs .item.active {background: #ffe9a8;color: #d64f90;}
 .tails-of-equestria .sheet-tabs .item:hover {background: #fff2c0;transform: scale(1.05);color: #d64f90;}
 .tails-of-equestria .item-entry {background: #fff;padding: 6px;margin-bottom: 6px;border-radius: 8px;box-shadow: 0 1px 4px rgba(0,0,0,0.1);}
 .tails-of-equestria .item-entry label {font-weight: bold;display: block;margin-bottom: 2px;color: #ed307c;}
 .tails-of-equestria .inven{ height:294px }
 .tails-of-equestria .list{height: 228px; overflow: auto}
-.tails-of-equestria .add-button{float:right;}
+.tails-of-equestria .add-button{float:right;background: none;border: none;height: 20px;padding: 0;font-size: 10px;}
 .tails-of-equestria .part.magie{height: 204px}
 .tails-of-equestria .part.magie table{height: 160px}
 
 .tails-of-equestria .item-entry {background: #fff;padding: 6px;margin-bottom: 6px;border-radius: 8px;box-shadow: 0 1px 4px rgba(0,0,0,0.1);}
-.tails-of-equestria .item-entry label {font-weight: bold;display: block;margin-bottom: 2px;color: #ed307c;}
-.tails-of-equestria .roll-button {border: none;background: #ffe9a8;border-radius: 50%;padding: 2px 6px;cursor: pointer; transition: 0.2s;}
+.tails-of-equestria .item-entry label {font-weight: bold;display: block;margin-bottom: 2px;color: #ed307c;font-family: "pony"}
+.tails-of-equestria .roll-button {border: none;background: #ffe9a8;border-radius: 5px;padding: 2px 6px;cursor: pointer; transition: 0.2s;width:100%}
 .tails-of-equestria .roll-button:hover { background: #fff2c0; transform: scale(1.1); }
 .tails-of-equestria .items h1 input{background: none; border: none; height: 60px}
 .tails-of-equestria .list table {color:rgb(237 48 124);margin: 0; padding: 0}
 .tails-of-equestria .list table td{height: 40px}
 .tails-of-equestria .list table td.description{width: 330px}
 .tails-of-equestria .list table td.actions button{height: 20px;display: inline-block;width: 25px;padding: 0;}
+.tails-of-equestria .item-img {width: 20px;height: 20px;display: inline-block;}
+.tails-of-equestria .partbas{position: relative}
+.tails-of-equestria .portrait{width: 60%; height: 300px; display: inline-block;position: absolute;}
+.tails-of-equestria .character-header .portrait img {width: 100%;height: 100%;border-radius: 10px;border: 2px solid #fff;box-shadow: 0 0 5px #aaa;margin-top: 10px}
+.tails-of-equestria .inventaire{width: calc(40% - 5px);display: inline-block;position: absolute;left:calc(60% + 5px)}
+.tails-of-equestria .identity{width: calc(100% - 155px);position: absolute;background: var(--couleur-violetclair)}
+.tails-of-equestria .friendly {position: relative;width: 125px;height: 125px;border-radius: 50%;top:20px;background: var(--couleur-amitie);color: var(--couleur-blanc);display: flex;align-items: center;justify-content: center;margin-left: 10px;float:right;}
+.tails-of-equestria .friendly svg {position: absolute;top: 0;left: 0;width: 125px;height: 125px;pointer-events: none;}
+.tails-of-equestria .friendly .value {font-size: 20px;font-weight: bold;z-index: 2;}
+.tails-of-equestria .friendly input {color:var(--couleur-blanc); background: none; font-size: 4em; border:none; height:60px}
+.tails-of-equestria .character-header{position: relative;height:145px;}
+.tails-of-equestria .robuste{background: var(--couleur-roseclair); color:var(--couleur-violet)}
+.tails-of-equestria .robuste label{text-align: right;padding-top:10px }
+.tails-of-equestria .robuste input{background: none; border-radius: 0px; border:none; border-bottom: var(--couleur-violet) 1px solid;}
+
+.tails-of-equestria .body{background:var(--couleur-bleu)}
+.tails-of-equestria .spirit{background:var(--couleur-violetmoyen)}
+.tails-of-equestria .charm{background:var(--couleur-rosemoyen)}
+.tails-of-equestria .portrait img{width: calc(100% - 20px);margin: 10px;border: 2px solid var(--couleur-roseclair);border-radius:12px;object-fit: cover;cursor: pointer;background: var(--couleur-blanc)}
+.tails-of-equestria .talent, .tails-of-equestria .defaut{height: 180px}
+.tails-of-equestria .talent {background: var(--couleur-bleu)}
+.tails-of-equestria .defaut {background: var(--couleur-violetmoyen)}
+.tails-of-equestria .fond, .tails-of-equestria .item-part {background: var(--degrade)}
+.tails-of-equestria .item-header{background: var(--couleur-violetclair)}
+.tails-of-equestria .item-part {padding: 10px; border-radius: 12px}
+
+.tails-of-equestria .list {color:var(--couleur-violet);list-style: none;padding: 0}
+.tails-of-equestria .list .name, .tails-of-equestria .list .modif, .tails-of-equestria .list .modif button{display:inline-block;}
+.tails-of-equestria .list .name{width: calc(100% - 80px);}
+.tails-of-equestria .list .modif{width: 50px}
+.tails-of-equestria .list .modif button{background: none; border:none; font-size: 10px; padding:0}
+
+.tails-of-equestria img.marque {width: 115px;height: 115px;border: 2px solid var(--color-border-dark);border-radius: 50%;object-fit: cover;cursor: pointer;float: right;}

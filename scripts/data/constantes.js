@@ -1,11 +1,20 @@
 export const RACE = {
+    bison:"bison",
+    changelin:"changelin",
+    chat:"chat",
+    chien:"chien",
+    cristal:"cristal",
+    dragon:"dragon",
+    griffon:"griffon",
+    hypogriffe:"hypogriffe",
+    kirin:"kirin",
+    livre:"livre",
+    papillon:"papillon",
+    pegase:"pegase",
     poney:"poney",
     licorne:"licorne",
-    pegase:"pegase",
-    griffon:"griffon",
-    dragon:"dragon",
-    hypogryffe:"hypogriffe",
-    changelin:"changelin",
+    zebre:"zebre",
+    reptilien:"reptilien",
     yack:"yack"
 };
 export const DES = {
@@ -17,6 +26,7 @@ export const DES = {
 };
 export const TYPE = {
     talent:"talent",
+    defaut:"defaut",
     magie:"magie",
     objet:"objet"
 };

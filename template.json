@@ -8,7 +8,9 @@
     "monstre": {}
   },
   "Item": {
-    "types": ["item"],
-    "item": {}
+    "types": ["item","talent","faiblesse"],
+    "item": {},
+    "talent": {},
+    "faiblesse": {}
   }
 }
