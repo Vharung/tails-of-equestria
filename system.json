@@ -31,20 +31,9 @@
  "packs": [
     { 
       "name": "inventaire",
-      "label": "Inventaire",
+      "label": "Inventaire / Talent",
       "system": "tails-of-equestria",
       "path": "./pack/inventaire",
-      "type": "Item",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      }
-    },
-    { 
-      "name": "talent",
-      "label": "Talents / Faiblesse",
-      "system": "tails-of-equestria",
-      "path": "./pack/talent",
       "type": "Item",
       "ownership": {
         "PLAYER": "OBSERVER",

@@ -11,9 +11,49 @@
     --couleur-violetmoyen:#dabfe2;
     --couleur-rosemoyen:#fbc6e6;
     --degrade:linear-gradient(120deg, #ffd1e3, #d6f0ff);
-
 }
-.tails-of-equestria {background: #ffffff7a}
+
+/* === BASE === */
+.window-app .window-content,.app.sidebar-popout .window-content {background: var(--degrade);border-radius: 20px;color: var(--couleur-violet);border: 2px solid var(--couleur-violetmoyen);box-shadow: 0 0 15px var(--couleur-ombre);}
+
+/* === CHAT === */
+.chat-message {border: none;border-radius: 10px;background: var(--couleur-violetclair);color: var(--couleur-violet);box-shadow: 0 0 8px var(--couleur-violetmoyen);padding: 5px;}
+.chat-message.whisper,.chat-message.blind {background: var(--couleur-roseclair);color: var(--couleur-violet);}
+
+/* === BOUTONS === */
+button, .dialog .dialog-buttons button {background: var(--couleur-amitie);color: var(--couleur-blanc);border: none;border-radius: 10px;padding: 5px 10px;font-weight: bold;transition: all 0.2s ease;}
+.dialog .dialog-buttons button {margin-left: 12px;}
+button:hover, .dialog .dialog-buttons button:hover, button[aria-pressed=true] {background: var(--couleur-violet);transform: scale(1.05);box-shadow: 0 0 10px var(--couleur-violetclair);}
+#chat-controls button{margin-left: 12px;}
+
+/* === SIDEBAR === */
+#ui-right {opacity: 0.9;transition: 0.5s;}
+#ui-right:hover {opacity: 1;}
+#ui-right #sidebar {background: var(--couleur-violetclair);border-radius: 15px;box-shadow: 0 0 8px var(--couleur-ombre);}
+#sidebar .flexcol button {border-radius: 50%;border: 2px solid var(--couleur-violet);background: var(--couleur-roseclair);color: var(--couleur-violet);margin: 5px;transition: 0.3s;}
+#sidebar-content.flexcol button {border-radius: 12px;}
+#sidebar .tabs li {position: relative;left: 7px;}
+#sidebar .flexcol button:hover, #sidebar .flexcol button.active {background: var(--couleur-amitie);color: var(--couleur-blanc);box-shadow: 0 0 10px var(--couleur-amitie);}
+
+/* === FORMULAIRES === */
+form button, .directory .action-buttons button {background: var(--couleur-amitie);border: none;color: var(--couleur-blanc);border-radius: 10px;font-weight: bold;}
+form button:hover {background: var(--couleur-violet);}
+
+/* === TITRES DE FENÊTRES === */
+.window-app .window-header {background: var(--degrade);border-bottom: 2px solid var(--couleur-rose);border-radius: 10px 10px 0 0;color: var(--couleur-violet);text-shadow: 0 0 3px var(--couleur-rose);}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {width: 6px;}
+::-webkit-scrollbar-thumb {background: var(--couleur-amitie);border-radius: 3px;}
+::-webkit-scrollbar-track {background: var(--couleur-roseclair);}
+
+/* === PAUSE ÉCRAN === */
+#pause img.fa-spin {content: url("../assets/logo-pony.webp");border-radius: 50%;animation: spin 5s linear infinite;}
+
+/* === EFFETS === */
+@keyframes spin {0% { transform: rotate(0deg); }100% { transform: rotate(360deg); }}
+
+.tails-of-equestria {background: #ffffff;border: 12px solid #f237a6;}
 .tails-of-equestria .part {border-radius: 12px;padding: 10px;margin-bottom: 10px;box-shadow: 0 0 6px #ccc;}
 .tails-of-equestria .character-header .identity {flex: 2;padding-left: 10px;}
 .tails-of-equestria .character-header h1 input {color:var(--couleur-violet);font-family: "pony", cursive;height:40px;font-size:0.6em;width: 100%;border: none;background: transparent;border-bottom: 2px solid var(--couleur-rose);text-align: center;}
@@ -59,7 +99,7 @@
 .tails-of-equestria .item-img {width: 20px;height: 20px;display: inline-block;}
 .tails-of-equestria .partbas{position: relative}
 .tails-of-equestria .portrait{width: 60%; height: 300px; display: inline-block;position: absolute;}
-.tails-of-equestria .character-header .portrait img {width: 100%;height: 100%;border-radius: 10px;border: 2px solid #fff;box-shadow: 0 0 5px #aaa;margin-top: 10px}
+.tails-of-equestria .character-header .portrait img {width: 100%;height: 100%;border-radius: 10px;border: 2px solid #fff;box-shadow: 0 0 5px #aaa;margin-top: 10px;}
 .tails-of-equestria .inventaire{width: calc(40% - 5px);display: inline-block;position: absolute;left:calc(60% + 5px)}
 .tails-of-equestria .identity{width: calc(100% - 155px);position: absolute;background: var(--couleur-violetclair)}
 .tails-of-equestria .friendly {position: relative;width: 125px;height: 125px;border-radius: 50%;top:20px;background: var(--couleur-amitie);color: var(--couleur-blanc);display: flex;align-items: center;justify-content: center;margin-left: 10px;float:right;}
@@ -74,12 +114,13 @@
 .tails-of-equestria .body{background:var(--couleur-bleu)}
 .tails-of-equestria .spirit{background:var(--couleur-violetmoyen)}
 .tails-of-equestria .charm{background:var(--couleur-rosemoyen)}
-.tails-of-equestria .portrait img{width: calc(100% - 20px);margin: 10px;border: 2px solid var(--couleur-roseclair);border-radius:12px;object-fit: cover;cursor: pointer;background: var(--couleur-blanc)}
+.tails-of-equestria .portrait img{width: calc(100% - 20px);margin: 10px;border: 2px solid var(--couleur-roseclair);border-radius:12px;object-fit: cover;cursor: pointer;background: var(--couleur-roseclair)}
 .tails-of-equestria .talent, .tails-of-equestria .defaut{height: 180px}
 .tails-of-equestria .talent {background: var(--couleur-bleu)}
 .tails-of-equestria .defaut {background: var(--couleur-violetmoyen)}
 .tails-of-equestria .fond, .tails-of-equestria .item-part {background: var(--degrade)}
 .tails-of-equestria .item-header{background: var(--couleur-violetclair)}
+.tails-of-equestria .item-header label{text-align: right;}
 .tails-of-equestria .item-part {padding: 10px; border-radius: 12px}
 
 .tails-of-equestria .list {color:var(--couleur-violet);list-style: none;padding: 0}
@@ -88,4 +129,4 @@
 .tails-of-equestria .list .modif{width: 50px}
 .tails-of-equestria .list .modif button{background: none; border:none; font-size: 10px; padding:0}
 
-.tails-of-equestria img.marque {width: 115px;height: 115px;border: 2px solid var(--color-border-dark);border-radius: 50%;object-fit: cover;cursor: pointer;float: right;}
+.tails-of-equestria img.marque{height: 100px; border:solid 2px var(--couleur-rose); background: var(--couleur-roseclair); border-radius: 12px; float:right;}

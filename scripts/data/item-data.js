@@ -15,6 +15,7 @@ export default class PonyItemData extends foundry.abstract.DataModel {
         }
       }),
       quantity: new fields.NumberField({ required: true, initial: 1, integer: true, min: 1 }),
+      cout: new fields.NumberField({ required: true, initial: 1, integer: true, min: 1 }),
       restriction: new fields.StringField({ required: true, initial: "aucune" }),
       dice: new fields.StringField({ 
         required: true,

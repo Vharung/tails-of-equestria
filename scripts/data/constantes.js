@@ -30,3 +30,12 @@ export const TYPE = {
     magie:"magie",
     objet:"objet"
 };
+export const HARMONY = {
+    aucun:"aucun",
+    magie:"magie",
+    rire:"rire",
+    honnetete:"honnetete",
+    loyaute:"loyaute",
+    generosite:"generosite",
+    bonte:"bonte"
+};

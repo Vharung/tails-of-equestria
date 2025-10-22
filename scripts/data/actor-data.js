@@ -1,4 +1,4 @@
-import {RACE, DES} from "./constantes.js";
+import {RACE, DES, HARMONY} from "./constantes.js";
 export default class PonyCharacterData extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -6,8 +6,20 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
     return {
       /** 🔹 Informations générales */
       name: new fields.StringField({ required: true, initial: game.i18n.localize("Pony.Character.Data.New") }),
-      marque: new fields.StringField({ required: true, initial: "icons/svg/mystery-man.svg" }),
-      harmony: new fields.StringField({ required: true, initial: "" }),
+      marque: new fields.StringField({ required: true, initial: "systems/tails-of-equestria/assets/logo-pony.webp" }),
+      harmony: new fields.StringField({
+        required: true,
+        initial: HARMONY.aucun,
+        choices: {
+          [HARMONY.aucun]:game.i18n.localize("Pony.Character.Data.Harmony.Aucun"),
+          [HARMONY.magie]:game.i18n.localize("Pony.Character.Data.Harmony.Magie"),
+          [HARMONY.rire]:game.i18n.localize("Pony.Character.Data.Harmony.Rire"),
+          [HARMONY.honnetete]:game.i18n.localize("Pony.Character.Data.Harmony.Honnetete"),
+          [HARMONY.loyaute]:game.i18n.localize("Pony.Character.Data.Harmony.Loyaute"),
+          [HARMONY.generosite]:game.i18n.localize("Pony.Character.Data.Harmony.Generosite"),
+          [HARMONY.bonte]:game.i18n.localize("Pony.Character.Data.Harmony.Bonte")
+        }
+      }),
       race: new fields.StringField({
         required: true,
         initial: RACE.poney,

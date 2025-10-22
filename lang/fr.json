@@ -33,6 +33,15 @@
 	    			"Reptilien":"Reptilien",
 	    			"Yack":"Yack",
 	    			"Zebre":"Zébre"
+	    		},
+	    		"Harmony":{
+	    			"Aucun":"Aucun",
+	    			"Magie":"Magie",
+	    			"Rire":"Rire / Dérision",
+	    			"Honnetete":"Honnêteté",
+	    			"Loyaute":"Loyauté",
+	    			"Generosite":"Générosité",
+	    			"Bonte":"Bonté"
 	    		}
 	    	},
 	    	"Sheet":{
