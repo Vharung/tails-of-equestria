@@ -51,6 +51,16 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
           talents: ["Charge (D8)", "Peau Épaisse (D4)"],
           quirks: ["Fier - Haut égard de soi ; crée des tensions sociales."]
         },
+        "caribou": {
+          body: "d8", mind: "d8", charm: "d8", robustness: 12,
+          talents: ["Cœur Vaillant (D6)","Résistance Magique (D6)","Berserker"],
+          quirks: [""]
+        },
+        "cerf": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Sabot Vert (D6)", "Compétence Spéciale : Discrétion (D4)", "Territorial"],
+          quirks: [""]
+        },
         "changelin": {
           body: "d4", mind: "d4", charm: "d4", robustness: 8,
           talents: ["Métamorphose (D6)", "Télékinésie (D4)", "Cœur Robuste (D4)", "Vol (D4)"],
@@ -61,12 +71,17 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
           talents: ["Griffes (D6)", "Furtivité (D6)"],
           quirks: ["Égoïste - Méfiant en groupe."]
         },
-        "chien de diamant": {
-          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+        "cheval": {
+          body: "d8", mind: "d8", charm: "d6", robustness: 12,
+          talents: ["Intellect Sage (D6)","Savant", "Cœur Vaillant (D6)"],
+          quirks: [""]
+        },
+        "chien": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 16,
           talents: ["Fouissage (D6)", "Pistage (D6)"],
           quirks: ["Avide - Obsédé par les gemmes."]
         },
-        "cristal pony": {
+        "cristal": {
           body: "d6", mind: "d6", charm: "d6", robustness: 12,
           talents: ["Cœur Robuste (D6)", "Télékinésie (D6)", "Vol (D6)"],
           quirks: ["Cœur de Cristal - Dépend de ses émotions."]
@@ -94,10 +109,20 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
           talents: ["Télékinésie (D6)", "Cœur de Kirin (D6)"],
           quirks: ["Nirik - Transformation enragée ; doit choisir un quirk supplémentaire."]
         },
-        "livre magique": {
+        "longma": {
+          body: "d6", mind: "d6", charm: "d8", robustness: 12,
+          talents: ["Vol (D6) ou Souffle Élémentaire (D6)", "choisir un talent de Marque de Destin (D6)","Ascétisme Draconique"],
+          quirks: [""]
+        },
+        "livre": {
           body: "d4", mind: "d8", charm: "d6", robustness: 12,
           talents: ["Savant Livresque (D6)", "Message (D6)", "Vol (D4)"],
           quirks: ["Vulnérabilité : Feu (D6)"]
+        },
+        "minotaure": {
+          body: "d10", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Robuste (D6)","Flair Créatif : Intimidation (D6)","Colérique"],
+          quirks: [""]
         },
         "perroquet": {
           body: "d6", mind: "d6", charm: "d6", robustness: 12,
@@ -128,7 +153,12 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
           body: "d10", mind: "d6", charm: "d4", robustness: 16,
           talents: ["Artisanat (D6)", "Peau Épaisse (D4)", "Massif (D4)"],
           quirks: ["Pointilleux - Obsédé par la perfection."]
-        }
+        },
+        "zebre": {
+          body: "d6", mind: "d6", charm: "d6", robustness: 12,
+          talents: ["Toucher Guérisseur (D6)","choisir un talent de Marque de Destin (D6)","Pacte Spirituel"],
+          quirks: [""]
+        },
       };
 
       // 🔹 Récupère la race actuelle du personnage
@@ -243,7 +273,8 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
       // 🎲 --- LANCER DE JET ---
       case "roll": {
         const stat =target.dataset.stat;
-        await this._generateRoll(actor, stat);
+        const dice =target.dataset.dice;
+        await this._generateRoll(actor, stat, dice);
         break;
       }
 
@@ -393,38 +424,50 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
  * @param {Actor} actor - L'acteur qui fait le jet
  * @param {string} stat - Le nom de la caractéristique (ex: "body")
  */
-  async _generateRoll(actor, stat) {
+  async _generateRoll(actor, stat, dice) {
     const system = actor.system;
-    const label = stat.charAt(0).toUpperCase() + stat.slice(1);
+    let label;
+    let dieSides;
+    let statValue;
+    // dice retourne d4 d6 d8 d10 d12 d20 ou d20+d10
+    if (dice) {
+      label = stat;
+      if(dice="d30"){dice="d20+1d10"}
+      dieSides = "1" + dice;
+    } else {
+      label = stat.charAt(0).toUpperCase() + stat.slice(1);
 
-    // Tableau de correspondance dés
-    const diceMap = {
-      D4: 4,
-      D6: 6,
-      D8: 8,
-      D10: 10,
-      D12: 12,
-      D20: 20
-    };
+      // ✅ Tableau de correspondance dés
+      const diceMap = {
+        D4: "1d4",
+        D6: "1d6",
+        D8: "1d8",
+        D10: "1d10",
+        D12: "1d12",
+        D20: "1d20",
+        D30: "1d20 + 1d10" // le fameux combo de deux dés
+      };
 
-    // Récupération du dé associé
-    const statValue = system[stat];
-    const dieSides = diceMap[statValue?.toUpperCase()] ?? 6;
+      // Récupération du dé associé
+      statValue = system[stat]?.toUpperCase() ?? "D6";
+      dieSides = diceMap[statValue] || "1d6";
+    }
 
-    // Création du roll (Foundry v13)
-    const roll = new Roll(`1d${dieSides}`);
-
-    // ⚙️ Nouvelle syntaxe v13 : evaluate() sans options
+    // ✅ Création et évaluation du roll (Foundry v13)
+    const roll = new Roll(dieSides);
     await roll.evaluate();
-    const jet=game.i18n.localize("Pony.Character.Sheet.Jet");
-    // Affichage dans le chat
+
+    const jet = game.i18n.localize("Pony.Character.Sheet.Jet");
+
+    // ✅ Affichage dans le chat
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor }),
-      flavor: `🎲 ${jet} ${label} (${statValue || "D6"}) de ${actor.name}`,
+      flavor: `🎲 ${jet} ${label} (${statValue}) de ${actor.name}`,
     });
 
-    // Debug
-    console.log(`${actor.name} lance ${statValue} (${dieSides} faces) :`, roll.total);
+    // ✅ Debug console
+    console.log(`${actor.name} lance ${statValue} (${dieSides}) :`, roll.total);
   }
+
 
 }

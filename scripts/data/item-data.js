@@ -21,11 +21,14 @@ export default class PonyItemData extends foundry.abstract.DataModel {
         required: true,
         initial: DES.d6,
         choices: {
+          [DES.d0]:"-",
           [DES.d4]:"d4",
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
-          [DES.d12]:"d12"
+          [DES.d12]:"d12",
+          [DES.d20]:"d20",
+          [DES.d30]:"d30"
         }
       }),
       description: new fields.HTMLField({ required: false, blank: true, initial: "", textSearch: true }),

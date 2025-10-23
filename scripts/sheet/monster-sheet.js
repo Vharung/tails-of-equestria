@@ -31,7 +31,7 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
 
   /** @override */
   static PARTS = {
-    header: { template: "systems/tails-of-equestria/templates/actors/character-header.hbs" },
+    header: { template: "systems/tails-of-equestria/templates/actors/monstre-header.hbs" },
     nav: { template: "systems/tails-of-equestria/templates/actors/character-nav.hbs" },
     biography: { template: "systems/tails-of-equestria/templates/actors/character-biography.hbs" },
     main: { template: "systems/tails-of-equestria/templates/actors/character-main.hbs" }
@@ -41,39 +41,8 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
 
   /** Préparation des données */
   async _prepareContext() {
-    // 🔹 Choix valides
-    const choicesRace = ["poney","licorne","pégase","griffon","dragon","hypogriffe","changelin","yack"];
-    const choicesStat = ["d4","d6","d8","d10","d12"];
-
     // 🔹 Référence au système de données
     const system = this.document.system;
-
-    // 🔹 Convertir race si c'est un index
-    if (typeof system.race === "number") system.race = choicesRace[system.race] ?? "poney";
-
-    // 🔹 Convertir body/mind/charm si ce sont des indices
-    if (typeof system.body === "number") system.body = choicesStat[system.body] ?? "d6";
-    if (typeof system.mind === "number") system.mind = choicesStat[system.mind] ?? "d6";
-    if (typeof system.charm === "number") system.charm = choicesStat[system.charm] ?? "d6";
-
-    // 🔹 Ajuste les PV max selon la race
-    const race = system.race?.toLowerCase() ?? "poney terrestre";
-
-    switch (race) {
-      case "poney terrestre": system.robustness.max = 12; break;
-      case "licorne": system.robustness.max = 10; break;
-      case "pégase": system.robustness.max = 10; break;
-      case "griffon": system.robustness.max = 11; break;
-      case "dragon": system.robustness.max = 14; break;
-      case "hypogriffe": system.robustness.max = 11; break;
-      case "changelin": system.robustness.max = 9; break;
-      case "yack": system.robustness.max = 13; break;
-      default: system.robustness.max = 10;
-    }
-
-    // 🔹 Ne pas dépasser le max
-    if (system.robustness.current > system.robustness.max)
-      system.robustness.current = system.robustness.max;
 
     // 🔹 Retourne le contexte pour le template
     return {
@@ -308,38 +277,53 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
  * @param {Actor} actor - L'acteur qui fait le jet
  * @param {string} stat - Le nom de la caractéristique (ex: "body")
  */
-  async _generateRoll(actor, stat) {
+  async _generateRoll(actor, stat, dice) {
     const system = actor.system;
-    const label = stat.charAt(0).toUpperCase() + stat.slice(1);
+    let label;
+    let dieSides;
+    let statValue;
+    // dice retourne d4 d6 d8 d10 d12 d20 ou d20+d10
+    if (dice) {
+      label = stat;
+      if(dice="d30"){dice="d20+1d10"}
+      dieSides = "1" + dice;
+    } else {
+      label = stat.charAt(0).toUpperCase() + stat.slice(1);
 
-    // Tableau de correspondance dés
-    const diceMap = {
-      D4: 4,
-      D6: 6,
-      D8: 8,
-      D10: 10,
-      D12: 12,
-      D20: 20
-    };
+      // ✅ Tableau de correspondance dés
+      const diceMap = {
+        D0: "1d0",
+        D1: "1d1",
+        D4: "1d4",
+        D6: "1d6",
+        D8: "1d8",
+        D10: "1d10",
+        D12: "1d12",
+        D20: "1d20",
+        D30: "1d20 + 1d10",
+        D60: "3d20",
+        D100: "5d20"
+      };
 
-    // Récupération du dé associé
-    const statValue = system[stat];
-    const dieSides = diceMap[statValue?.toUpperCase()] ?? 6;
+      // Récupération du dé associé
+      statValue = system[stat]?.toUpperCase() ?? "D6";
+      dieSides = diceMap[statValue] || "1d6";
+    }
 
-    // Création du roll (Foundry v13)
-    const roll = new Roll(`1d${dieSides}`);
-
-    // ⚙️ Nouvelle syntaxe v13 : evaluate() sans options
+    // ✅ Création et évaluation du roll (Foundry v13)
+    const roll = new Roll(dieSides);
     await roll.evaluate();
 
-    // Affichage dans le chat
+    const jet = game.i18n.localize("Pony.Character.Sheet.Jet");
+
+    // ✅ Affichage dans le chat
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor }),
-      flavor: `🎲 Jet de ${label} (${statValue || "D6"}) de ${actor.name}`,
+      flavor: `🎲 ${jet} ${label} (${statValue}) de ${actor.name}`,
     });
 
-    // Debug
-    console.log(`${actor.name} lance ${statValue} (${dieSides} faces) :`, roll.total);
+    // ✅ Debug console
+    console.log(`${actor.name} lance ${statValue} (${dieSides}) :`, roll.total);
   }
 
 }

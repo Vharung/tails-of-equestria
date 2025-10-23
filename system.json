@@ -53,7 +53,7 @@
     },
     {
       "name": "monstre",
-      "label": "Monstres",
+      "label": "PNJ / Monstres",
       "system": "tails-of-equestria",
       "path": "./pack/monstre",
       "type": "Actor",
@@ -63,7 +63,7 @@
       }
     }
   ],
-  "url": "https://github.com/Vharung/liber",
+  "url": "https://github.com/Vharung/tails-of-equestria",
   "manifest": "https://raw.githubusercontent.com/Vharung/tails-of-equestria/main/system.json",
   "download": "https://github.com/Vharung/tails-of-equestria/archive/refs/heads/main.zip",
   "background": "systems/tails-of-equestria/assets/accueil.webp",

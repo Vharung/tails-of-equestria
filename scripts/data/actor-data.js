@@ -26,15 +26,20 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
         choices: {
           [RACE.bison]:game.i18n.localize("Pony.Character.Data.Race.Bison"),
           [RACE.changelin]:game.i18n.localize("Pony.Character.Data.Race.Changelin"),
+          [RACE.caribou]:game.i18n.localize("Pony.Character.Data.Race.Caribou"),
+          [RACE.cerf]:game.i18n.localize("Pony.Character.Data.Race.Cerf"),
           [RACE.chat]:game.i18n.localize("Pony.Character.Data.Race.Chat"),
+          [RACE.cheval]:game.i18n.localize("Pony.Character.Data.Race.Cheval"),
           [RACE.chien]:game.i18n.localize("Pony.Character.Data.Race.Chien"),
-          [RACE.chat]:game.i18n.localize("Pony.Character.Data.Race.Cristal"),
+          [RACE.cristal]:game.i18n.localize("Pony.Character.Data.Race.Cristal"),
           [RACE.dragon]:game.i18n.localize("Pony.Character.Data.Race.Dragon"),
           [RACE.griffon]:game.i18n.localize("Pony.Character.Data.Race.Griffon"),
           [RACE.hypogriffe]:game.i18n.localize("Pony.Character.Data.Race.Hippogriffe"),
           [RACE.kirin]:game.i18n.localize("Pony.Character.Data.Race.Kirin"),
+          [RACE.longma]:game.i18n.localize("Pony.Character.Data.Race.Longma"),
           [RACE.livre]:game.i18n.localize("Pony.Character.Data.Race.Livre"),
-          [RACE.livre]:game.i18n.localize("Pony.Character.Data.Race.Papillon"),
+          [RACE.minotaure]:game.i18n.localize("Pony.Character.Data.Race.Minotaure"),
+          [RACE.papillon]:game.i18n.localize("Pony.Character.Data.Race.Papillon"),
           [RACE.pegase]:game.i18n.localize("Pony.Character.Data.Race.Pegasse"),          
           [RACE.poney]:game.i18n.localize("Pony.Character.Data.Race.Poney"),
           [RACE.licorne]:game.i18n.localize("Pony.Character.Data.Race.Licorne"),
@@ -54,11 +59,17 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
         required: true,
         initial: DES.d6,
         choices: {
+          [DES.d0]:"-",
+          [DES.d1]:"1",
           [DES.d4]:"d4",
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
-          [DES.d12]:"d12"
+          [DES.d12]:"d12",
+          [DES.d20]:"d20",
+          [DES.d30]:"d20+d10",
+          [DES.d60]:"3d20",
+          [DES.d100]:"5d20"
         }
       }),
       mind: new fields.StringField({ 
@@ -69,7 +80,9 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
-          [DES.d12]:"d12"
+          [DES.d12]:"d12",
+          [DES.d20]:"d20",
+          [DES.d30]:"d30"
         }
       }),
       charm: new fields.StringField({ 
@@ -80,7 +93,9 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
-          [DES.d12]:"d12"
+          [DES.d12]:"d12",
+          [DES.d20]:"d20",
+          [DES.d30]:"d30"
         }
       }),
 

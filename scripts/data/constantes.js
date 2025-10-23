@@ -1,28 +1,39 @@
 export const RACE = {
     bison:"bison",
     changelin:"changelin",
+    caribou:"caribou",
+    cerf:"cerf",
     chat:"chat",
+    cheval:"cheval",
     chien:"chien",
     cristal:"cristal",
     dragon:"dragon",
     griffon:"griffon",
     hypogriffe:"hypogriffe",
     kirin:"kirin",
+    longma:"longma",
     livre:"livre",
+    minotaure:"minotaure",
     papillon:"papillon",
     pegase:"pegase",
     poney:"poney",
     licorne:"licorne",
-    zebre:"zebre",
     reptilien:"reptilien",
-    yack:"yack"
+    yack:"yack",
+    zebre:"zebre"
 };
 export const DES = {
+    d0:"d0",
+    d1:"d1",
     d4:"d4",
     d6:"d6",
     d8:"d8",
     d10:"d10",
-    d12:"d12"
+    d12:"d12",
+    d20:"d20",
+    d30:"d30",
+    d60:"d60",
+    d100:"d100"
 };
 export const TYPE = {
     talent:"talent",

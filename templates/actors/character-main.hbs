@@ -45,7 +45,7 @@
               <li data-item-id="{{item._id}}" title="{{stripTags item.system.description}}"><img class="item-img" src="{{item.img}} ">
                 <span class="name">{{item.name}}</span>
                 <span class="modif"><button type="button" class="item-action" data-action="edit" title="{{localize 'Pony.Character.Biography.Modifier'}}" data-item-id="{{item._id}}">✏️</button>
-                  <button type="button" class="item-action" data-action="use" title="{{localize 'Pony.Character.Biography.Utiliser'}}" data-item-id="{{item._id}}">🎲</button>
+                  <button type="button" class="item-action" data-action="roll" title="{{localize 'Pony.Character.Biography.Utiliser'}}" data-dice="{{item.system.dice}}" data-stat="{{item.name}}" data-item-id="{{item._id}}">🎲</button>
                   <button type="button" class="item-action" data-action="delete" title="{{localize 'Pony.Character.Biography.Supprimer'}}" data-item-id="{{item._id}}">❌</button>
                 </span></li>
              {{/if}}
@@ -61,7 +61,7 @@
               <li data-item-id="{{item._id}}" title="{{stripTags item.system.description}}"><img class="item-img" src="{{item.img}} ">
                 <span class="name">{{item.name}}</span>
                 <span class="modif"><button type="button" class="item-action" data-action="edit" title="{{localize 'Pony.Character.Biography.Modifier'}}" data-item-id="{{item._id}}">✏️</button>
-                  <button type="button" class="item-action" data-action="use" title="{{localize 'Pony.Character.Biography.Utiliser'}}" data-item-id="{{item._id}}">🎲</button>
+                  <button type="button" class="item-action" data-dice="{{item.system.dice}}" data-stat="{{item.name}}" data-action="roll" title="{{localize 'Pony.Character.Biography.Utiliser'}}" data-item-id="{{item._id}}">🎲</button>
                   <button type="button" class="item-action" data-action="delete" title="{{localize 'Pony.Character.Biography.Supprimer'}}" data-item-id="{{item._id}}">❌</button>
                 </span></li>
              {{/if}}

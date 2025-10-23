@@ -1,0 +1,27 @@
+<div class="character-header">
+  <div class="identity part">
+      <h1><input name="name" type="text" value="{{actor.name}}"/></h1>
+      <div class="grid grid-2col">
+        <div>
+        </div>
+        <div>
+          <label>{{localize 'Pony.Character.Header.Niveau'}}</label>
+          {{formInput systemFields.level name="system.level" value=system.level localize=true}}
+        </div>
+      </div
+    </div>
+  </div>
+  <div class="friendly">
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <path id="textArc" d="M 30,100 A 70,70 0 0,1 170,100" />
+      </defs>
+      <text font-size="25" fill="white">
+        <textPath href="#textArc" startOffset="50%" text-anchor="middle">
+          Amitié
+        </textPath>
+      </text>
+    </svg>
+    {{formInput systemFields.friendship.fields.current name="system.friendship.current" value=system.friendship.current}}
+  </div>
+</div>

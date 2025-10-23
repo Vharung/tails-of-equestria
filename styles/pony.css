@@ -123,7 +123,8 @@ form button:hover {background: var(--couleur-violet);}
 .tails-of-equestria .item-header label{text-align: right;}
 .tails-of-equestria .item-part {padding: 10px; border-radius: 12px}
 
-.tails-of-equestria .list {color:var(--couleur-violet);list-style: none;padding: 0}
+.tails-of-equestria .list {color:var(--couleur-violet);list-style: none;padding: 0; margin:0}
+.tails-of-equestria .talent .list ,.tails-of-equestria .faiblesse .list {height: 140px; overflow: auto}
 .tails-of-equestria .list .name, .tails-of-equestria .list .modif, .tails-of-equestria .list .modif button{display:inline-block;}
 .tails-of-equestria .list .name{width: calc(100% - 80px);}
 .tails-of-equestria .list .modif{width: 50px}
