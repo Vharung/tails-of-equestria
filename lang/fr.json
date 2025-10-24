@@ -16,6 +16,7 @@
 	    	"Data":{
 	    		"New":"Nouveau personnage",
 	    		"Race":{
+	    			"Alicorne":"Alicorne",
 	    			"Bison":"Bison",
 	    			"Changelin":"Changelin",
 	    			"Caribou":"Caribou Viking",
@@ -32,7 +33,7 @@
 	    			"Minotaure":"Minotaure",
 	    			"Livre":"Livre Magique",
 	    			"Papillon":"Papillon - Pirate",
-	    			"Pegasse":"Pegasse",
+	    			"Pegasse":"Pégase",
 	    			"Poney":"Poney Terrestre",
 	    			"Licorne":"Licorne",
 	    			"Reptilien":"Reptilien",

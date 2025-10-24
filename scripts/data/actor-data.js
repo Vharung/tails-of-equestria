@@ -24,6 +24,7 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
         required: true,
         initial: RACE.poney,
         choices: {
+          [RACE.alicorne]:game.i18n.localize("Pony.Character.Data.Race.Alicorne"),
           [RACE.bison]:game.i18n.localize("Pony.Character.Data.Race.Bison"),
           [RACE.changelin]:game.i18n.localize("Pony.Character.Data.Race.Changelin"),
           [RACE.caribou]:game.i18n.localize("Pony.Character.Data.Race.Caribou"),
@@ -36,9 +37,6 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
           [RACE.griffon]:game.i18n.localize("Pony.Character.Data.Race.Griffon"),
           [RACE.hypogriffe]:game.i18n.localize("Pony.Character.Data.Race.Hippogriffe"),
           [RACE.kirin]:game.i18n.localize("Pony.Character.Data.Race.Kirin"),
-          [RACE.longma]:game.i18n.localize("Pony.Character.Data.Race.Longma"),
-          [RACE.livre]:game.i18n.localize("Pony.Character.Data.Race.Livre"),
-          [RACE.minotaure]:game.i18n.localize("Pony.Character.Data.Race.Minotaure"),
           [RACE.papillon]:game.i18n.localize("Pony.Character.Data.Race.Papillon"),
           [RACE.pegase]:game.i18n.localize("Pony.Character.Data.Race.Pegasse"),          
           [RACE.poney]:game.i18n.localize("Pony.Character.Data.Race.Poney"),
@@ -68,7 +66,9 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
           [DES.d12]:"d12",
           [DES.d20]:"d20",
           [DES.d30]:"d20+d10",
+          [DES.d40]:"2d20",
           [DES.d60]:"3d20",
+          [DES.d80]:"4d20",
           [DES.d100]:"5d20"
         }
       }),
@@ -76,6 +76,7 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
         required: true,
         initial: DES.d6,
         choices: {
+          [DES.d0]:"-",
           [DES.d4]:"d4",
           [DES.d6]:"d6",
           [DES.d8]:"d8",
@@ -89,12 +90,14 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
         required: true,
         initial: DES.d6,
         choices: {
+          [DES.d0]:"-",
           [DES.d4]:"d4",
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
           [DES.d12]:"d12",
           [DES.d20]:"d20",
+          [DES.d21]:"d21",
           [DES.d30]:"d30"
         }
       }),

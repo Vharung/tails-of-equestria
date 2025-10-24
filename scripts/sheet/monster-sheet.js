@@ -17,7 +17,7 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
       frame: true,                  // <- force la création d’une fenêtre
       icon: "fa-solid fa-horse",    // <- facultatif
     },
-    dragDrop: [{ dragSelector: '[data-drag]', dropSelector: '.inventory-list' }], // Remplacer '.inventory-list' par votre sélecteur    tabGroups: { sheet: "inventory" },
+    dragDrop: [{ dragSelector: '[data-drag]', dropSelector: '.list' }], // Remplacer '.inventory-list' par votre sélecteur    tabGroups: { sheet: "inventory" },
     actions: {
       editImage: PonyMonsterSheet.#onEditImage,
       edit: PonyMonsterSheet.#onItemAction,
@@ -66,12 +66,13 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
     super._onRender(context, options);
     //console.log('render')
     console.log(context)
-
+    const el = this.element[0]; // wrapper principal
+    const system = this.actor.system;
 
     /* === 🔹 DRAG & DROP === */
-/*    el.querySelectorAll('[data-drag]').forEach(item => {
+    el.querySelectorAll('[data-drag]').forEach(item => {
       item.addEventListener('dragstart', () => {}); // placeholder
-    });*/
+    });
 
     // === 🔹 ONGLET ACTIF === 
     //conserver le dernier onglet ouvert

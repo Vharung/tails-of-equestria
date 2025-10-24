@@ -28,6 +28,7 @@ export default class PonyItemData extends foundry.abstract.DataModel {
           [DES.d10]:"d10",
           [DES.d12]:"d12",
           [DES.d20]:"d20",
+          [DES.d40]:"2d20",
           [DES.d30]:"d30"
         }
       }),

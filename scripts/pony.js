@@ -3,6 +3,7 @@ import PonyCharacterSheet from "./sheet/actor-sheet.js";
 import PonyMonsterSheet from "./sheet/monster-sheet.js";
 import PonyItemSheet from "./sheet/item-sheet.js";
 import PonyTalentSheet from "./sheet/talent-sheet.js";
+import PonyQuicksSheet from "./sheet/quicks-sheet.js";
 
 import PonyCharacterData from "./data/actor-data.js";
 import PonyItemData from "./data/item-data.js";
@@ -42,7 +43,8 @@ Hooks.once("init", async function () {
   // Items 
   foundry.documents.collections.Items.unregisterSheet("core", ItemSheetV2); 
   foundry.documents.collections.Items.registerSheet("pony", PonyItemSheet, { types: ["item"], makeDefault: true }); 
-  foundry.documents.collections.Items.registerSheet("pony", PonyTalentSheet, { types: ["talent","faiblesse"], makeDefault: true }); 
+  foundry.documents.collections.Items.registerSheet("pony", PonyTalentSheet, { types: ["talent"], makeDefault: true }); 
+  foundry.documents.collections.Items.registerSheet("pony", PonyQuicksSheet, { types: ["faiblesse"], makeDefault: true }); 
 
   console.log("✅ Système Tail of Equestria initialisé !");
 });

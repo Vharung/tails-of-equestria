@@ -17,7 +17,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
       frame: true,                  // <- force la création d’une fenêtre
       icon: "fa-solid fa-horse",    // <- facultatif
     },
-    dragDrop: [{ dragSelector: '[data-drag]', dropSelector: '.inventory-list' }], // Remplacer '.inventory-list' par votre sélecteur    tabGroups: { sheet: "inventory" },
+    dragDrop: [{ dragSelector: '[data-drag]', dropSelector: '.list' }], // Remplacer '.inventory-list' par votre sélecteur    tabGroups: { sheet: "inventory" },
     actions: {
       editImage: PonyCharacterSheet.#onEditImage,
       edit: PonyCharacterSheet.#onItemAction,
@@ -76,12 +76,12 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
           talents: ["Intellect Sage (D6)","Savant", "Cœur Vaillant (D6)"],
           quirks: [""]
         },
-        "chien": {
+        "chien de diamant": {
           body: "d6", mind: "d6", charm: "d6", robustness: 16,
           talents: ["Fouissage (D6)", "Pistage (D6)"],
           quirks: ["Avide - Obsédé par les gemmes."]
         },
-        "cristal": {
+        "cristal pony": {
           body: "d6", mind: "d6", charm: "d6", robustness: 12,
           talents: ["Cœur Robuste (D6)", "Télékinésie (D6)", "Vol (D6)"],
           quirks: ["Cœur de Cristal - Dépend de ses émotions."]
@@ -114,7 +114,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
           talents: ["Vol (D6) ou Souffle Élémentaire (D6)", "choisir un talent de Marque de Destin (D6)","Ascétisme Draconique"],
           quirks: [""]
         },
-        "livre": {
+        "livre magique": {
           body: "d4", mind: "d8", charm: "d6", robustness: 12,
           talents: ["Savant Livresque (D6)", "Message (D6)", "Vol (D4)"],
           quirks: ["Vulnérabilité : Feu (D6)"]
@@ -163,21 +163,22 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
 
       // 🔹 Récupère la race actuelle du personnage
       const raceKey = (system.race ?? "").toLowerCase();
+      if(this.document.type=="personnage"){
+        // 🔹 Si la race existe dans le tableau
+        if (raceData[raceKey]) {
+          const data = raceData[raceKey];
+          system.body = data.body;
+          system.mind = data.mind;
+          system.charm = data.charm;
+          system.robustness.max = data.robustness;
+          system.talentsBase = data.talents;
+          system.quirksBase = data.quirks;
+        }
 
-      // 🔹 Si la race existe dans le tableau
-      if (raceData[raceKey]) {
-        const data = raceData[raceKey];
-        system.body = data.body;
-        system.mind = data.mind;
-        system.charm = data.charm;
-        system.robustness.max = data.robustness;
-        system.talentsBase = data.talents;
-        system.quirksBase = data.quirks;
+        // 🔹 Ne pas dépasser le max
+        if (system.robustness.current > system.robustness.max)
+          system.robustness.current = system.robustness.max;
       }
-
-      // 🔹 Ne pas dépasser le max
-      if (system.robustness.current > system.robustness.max)
-        system.robustness.current = system.robustness.max;
 
       // 🔹 Retourne le contexte pour le template
       return {
@@ -203,11 +204,13 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
     //console.log('render')
     console.log(context)
 
+    const system = this.actor.system;
+    const el = this.element[0]; // wrapper principal
 
     /* === 🔹 DRAG & DROP === */
-/*    el.querySelectorAll('[data-drag]').forEach(item => {
+    el.querySelectorAll('[data-drag]').forEach(item => {
       item.addEventListener('dragstart', () => {}); // placeholder
-    });*/
+    });
 
     // === 🔹 ONGLET ACTIF === 
     //conserver le dernier onglet ouvert
@@ -445,7 +448,12 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
         D10: "1d10",
         D12: "1d12",
         D20: "1d20",
-        D30: "1d20 + 1d10" // le fameux combo de deux dés
+        D21: "1d20+1",
+        D30: "1d20 + 1d10",
+        D40: "2d20",
+        D60: "3d20",
+        D80: "4d20",
+        D100: "5d20"
       };
 
       // Récupération du dé associé

@@ -1,4 +1,5 @@
 export const RACE = {
+    alicorne:"alicorne",
     bison:"bison",
     changelin:"changelin",
     caribou:"caribou",
@@ -31,8 +32,11 @@ export const DES = {
     d10:"d10",
     d12:"d12",
     d20:"d20",
+    d21:"d21",
     d30:"d30",
+    d40:"d40",
     d60:"d60",
+    d80:"d80",
     d100:"d100"
 };
 export const TYPE = {
