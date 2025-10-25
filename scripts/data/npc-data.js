@@ -1,5 +1,5 @@
 import {RACE, DES, HARMONY} from "./constantes.js";
-export default class PonyCharacterData extends foundry.abstract.DataModel {
+export default class PonyPNJData extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
 
@@ -57,36 +57,57 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
         required: true,
         initial: DES.d6,
         choices: {
+          [DES.d0]:"-",
+          [DES.d1]:"1",
           [DES.d4]:"d4",
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
           [DES.d12]:"d12",
-          [DES.d20]:"d20"
+          [DES.d20]:"d20",
+          [DES.d30]:"d20+d10",
+          [DES.d40]:"2d20",
+          [DES.d60]:"3d20",
+          [DES.d80]:"4d20",
+          [DES.d100]:"5d20"
         }
       }),
       mind: new fields.StringField({ 
         required: true,
         initial: DES.d6,
         choices: {
+          [DES.d0]:"-",
+          [DES.d1]:"1",
           [DES.d4]:"d4",
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
           [DES.d12]:"d12",
-          [DES.d20]:"d20"
+          [DES.d20]:"d20",
+          [DES.d30]:"d20+d10",
+          [DES.d40]:"2d20",
+          [DES.d60]:"3d20",
+          [DES.d80]:"4d20",
+          [DES.d100]:"5d20"
         }
       }),
       charm: new fields.StringField({ 
         required: true,
         initial: DES.d6,
         choices: {
+          [DES.d0]:"-",
+          [DES.d1]:"1",
           [DES.d4]:"d4",
           [DES.d6]:"d6",
           [DES.d8]:"d8",
           [DES.d10]:"d10",
           [DES.d12]:"d12",
-          [DES.d20]:"d20"
+          [DES.d20]:"d20",
+          [DES.d30]:"d20+d10",
+          [DES.d40]:"2d20",
+          [DES.d60]:"3d20",
+          [DES.d80]:"4d20",
+          [DES.d100]:"5d20"
         }
       }),
 

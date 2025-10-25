@@ -25,7 +25,8 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
       delete: PonyMonsterSheet.#onItemAction,
       roll:PonyMonsterSheet.#onActorAction,
       addItem:PonyMonsterSheet.#onItemAction,
-      addMagic:PonyMonsterSheet.#onItemAction
+      addMagic:PonyMonsterSheet.#onItemAction,
+      addDefaut:PonyMonsterSheet.#onItemAction
     }
   };
 
@@ -239,10 +240,9 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
       /* --- ➕ AJOUT D’UN OBJET --- */
       case "addItem": {
         const newItem = await Item.create({
-          name: "Nouvel objet",
+          name: game.i18n.localize("Pony.Character.Sheet.Objet"),
           type: "item",
           system: {
-            type:"objet",
             quantity: 1,
             description: ""
           }
@@ -253,17 +253,27 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
       /* --- ✨ AJOUT D’UNE MAGIE --- */
       case "addMagic": {
         const newItem = await Item.create({
-          name: "Nouvelle magie",
-          type: "item",
+          name: game.i18n.localize("Pony.Character.Sheet.Talent"),
+          type: "talent",
           system: {
-            type:"magie",
-            quantity: 1,
+            dice: "d4",
             description: ""
           }
         }, { parent: actor });
-        return ui.notifications.info(`Magie "${newItem.name}" ajoutée à ${actor.name}.`);
+        return ui.notifications.info(`Talent "${newItem.name}" ajoutée à ${actor.name}.`);
       }
-
+      /* --- ✨ AJOUT D’UNE MAGIE --- */
+      case "addDefaut": {
+        const newItem = await Item.create({
+          name: game.i18n.localize("Pony.Character.Sheet.Faiblesse"),
+          type: "faiblesse",
+          system: {
+            dice: "d4",
+            description: ""
+          }
+        }, { parent: actor });
+        return ui.notifications.info(`Defaut "${newItem.name}" ajoutée à ${actor.name}.`);
+      }
       default:
         console.warn(`Action inconnue : ${action}`);
     }

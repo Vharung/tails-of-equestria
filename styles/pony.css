@@ -131,3 +131,6 @@ form button:hover {background: var(--couleur-violet);}
 .tails-of-equestria .list .modif button{background: none; border:none; font-size: 10px; padding:0}
 
 .tails-of-equestria img.marque{height: 100px; border:solid 2px var(--couleur-rose); background: var(--couleur-roseclair); border-radius: 12px; float:right;}
+.tails-of-equestria .inven .name{width: 100px;}
+.tails-of-equestria .inven .descr{width: calc(100% - 180px);display: inline-block;}
+.tails-of-equestria .inven li{background:var(--couleur-rose); margin-bottom:2px}

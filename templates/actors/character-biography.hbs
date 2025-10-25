@@ -14,9 +14,10 @@
     <label>{{localize 'Pony.Character.Biography.Inventaire'}} <button type="button" class="add-item add-button" data-action="addItem">➕</button></label>
     <ul class="list">
       {{#each items as |item index|}}
-        {{#if (eq item.type "objet")}}
+        {{#if (eq item.type "item")}}
           <li class="draggable" data-item-id="{{item._id}}" title="{{stripTags item.system.description}}"><img class="item-img" src="{{item.img}} ">
             <span class="name">{{item.name}}</span>
+            <span class="descr">{{stripTags item.system.description}}</span>
             <span class="modif"><button type="button" class="item-action" data-action="edit" title="{{localize 'Pony.Character.Biography.Modifier'}}" data-item-id="{{item._id}}">✏️</button>
                   <button type="button" class="item-action" data-action="use" title="{{localize 'Pony.Character.Biography.Utiliser'}}" data-item-id="{{item._id}}">🎲</button>
                   <button type="button" class="item-action" data-action="delete" title="{{localize 'Pony.Character.Biography.Supprimer'}}" data-item-id="{{item._id}}">❌</button>

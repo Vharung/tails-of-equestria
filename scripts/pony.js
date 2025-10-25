@@ -6,6 +6,7 @@ import PonyTalentSheet from "./sheet/talent-sheet.js";
 import PonyQuicksSheet from "./sheet/quicks-sheet.js";
 
 import PonyCharacterData from "./data/actor-data.js";
+import PonyPnjData from "./data/npc-data.js";
 import PonyItemData from "./data/item-data.js";
 
 
@@ -19,8 +20,8 @@ Hooks.once("init", async function () {
   // Définition des modèles de données
   CONFIG.Actor.dataModels = {
     character: PonyCharacterData,
-    pnj: PonyCharacterData,
-    monstre: PonyCharacterData // si tu n’as pas encore un modèle spécifique
+    pnj: PonyPnjData,
+    monstre: PonyPnjData // si tu n’as pas encore un modèle spécifique
   };
 
   CONFIG.Item.dataModels = {

@@ -25,7 +25,8 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
       delete: PonyCharacterSheet.#onItemAction,
       roll:PonyCharacterSheet.#onActorAction,
       addItem:PonyCharacterSheet.#onItemAction,
-      addMagic:PonyCharacterSheet.#onItemAction
+      addMagic:PonyCharacterSheet.#onItemAction,
+      addDefaut:PonyCharacterSheet.#onItemAction
     }
   };
 
@@ -392,7 +393,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
       case "addMagic": {
         const newItem = await Item.create({
           name: game.i18n.localize("Pony.Character.Sheet.Talent"),
-          type: "item",
+          type: "talent",
           system: {
             dice: "d4",
             description: ""
@@ -404,7 +405,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
       case "addDefaut": {
         const newItem = await Item.create({
           name: game.i18n.localize("Pony.Character.Sheet.Faiblesse"),
-          type: "item",
+          type: "faiblesse",
           system: {
             dice: "d4",
             description: ""
