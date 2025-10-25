@@ -289,52 +289,94 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
  * @param {string} stat - Le nom de la caractéristique (ex: "body")
  */
   async _generateRoll(actor, stat, dice) {
-    const system = actor.system;
-    let label;
-    let dieSides;
-    let statValue;
-    // dice retourne d4 d6 d8 d10 d12 d20 ou d20+d10
-    if (dice) {
-      label = stat;
-      if(dice="d30"){dice="d20+1d10"}
-      dieSides = "1" + dice;
-    } else {
-      label = stat.charAt(0).toUpperCase() + stat.slice(1);
+      const system = actor.system;
+      let label;
+      let dieSides;
+      let statValue;
 
-      // ✅ Tableau de correspondance dés
-      const diceMap = {
-        D0: "1d0",
-        D1: "1d1",
-        D4: "1d4",
-        D6: "1d6",
-        D8: "1d8",
-        D10: "1d10",
-        D12: "1d12",
-        D20: "1d20",
-        D30: "1d20 + 1d10",
-        D60: "3d20",
-        D100: "5d20"
-      };
+      // 🎲 Gestion d’un dé transmis directement (ex: "d8" ou "d20+d10")
+      if (dice) {
+        label = stat;
+        if(dice="d30"){dice="d20+1d10"}
+          dieSides = "1" + dice;
+        } else {
+          label = stat.charAt(0).toUpperCase() + stat.slice(1);
 
-      // Récupération du dé associé
+          // ✅ Tableau de correspondance dés
+          const diceMap = {
+            D0: "1d0",
+            D1: "1d1",
+            D4: "1d4",
+            D6: "1d6",
+            D8: "1d8",
+            D10: "1d10",
+            D12: "1d12",
+            D20: "1d20",
+            D30: "1d20 + 1d10",
+            D60: "3d20",
+            D100: "5d20"
+          };
+          // Récupération du dé associé
       statValue = system[stat]?.toUpperCase() ?? "D6";
       dieSides = diceMap[statValue] || "1d6";
     }
+      // ✅ Fonction de jet explosif avec affichage détaillé
+      const rollExplode = async (formula) => {
+        const match = formula.match(/(\d+)d(\d+)/i);
+        const sides = match ? parseInt(match[2]) : 6;
+        let total = 0;
+        let rolls = [];
+        let keepRolling = true;
 
-    // ✅ Création et évaluation du roll (Foundry v13)
-    const roll = new Roll(dieSides);
-    await roll.evaluate();
+        while (keepRolling) {
+          const r = new Roll(formula);
+          await r.evaluate();
+          const result = r.total;
+          total += result;
+          rolls.push(result);
 
-    const jet = game.i18n.localize("Pony.Character.Sheet.Jet");
+          if (result === sides) {
+            keepRolling = true;
+            console.log(`🎆 Explosion ! Nouveau jet de ${formula}`);
+          } else {
+            keepRolling = false;
+          }
+        }
 
-    // ✅ Affichage dans le chat
-    roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor }),
-      flavor: `🎲 ${jet} ${label} (${statValue}) de ${actor.name}`,
-    });
+        const detail = rolls
+          .map(r => (r === sides ? `${r} 🎆` : `${r}`))
+          .join(" + ");
 
-    // ✅ Debug console
-    console.log(`${actor.name} lance ${statValue} (${dieSides}) :`, roll.total);
-  }
+        return { total, detail };
+      };
+
+      // ✅ Fenêtre de choix de difficulté
+      
+      const level = await new Promise(resolve => {
+        new DifficultyDialogV2(resolve).render(true);
+      });
+      console.log("Difficulté choisie :", level);
+      const { total, detail } = await rollExplode(dieSides);
+
+      // ✅ Vérifie réussite ou échec
+      const success = total >= level;
+      const resultText = success ? '<span style="background:#bbe9f0;color:#f237a6;width: 100%;display: block;text-align: center;padding: 10px;">Succès !</span>' : '<span class="result" style="background:#f237a6;color:#bbe9f0;width: 100%;display: block;text-align: center;padding: 10px;">Échec.</span>';
+
+      const jet = game.i18n.localize("Pony.Character.Sheet.Jet") ?? "Jet";
+      const message = `
+        🎲 <b>${jet} ${label}</b> (${statValue ?? dieSides}) de <b>${actor.name}</b><br/>
+        <span class="resultdice">Difficulté : <b>${level}</b><br/>
+        Résultat : ${detail} = <b>${total}</b></span>
+        ${resultText}
+      `;
+
+      ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor }),
+        content: message,
+      });
+
+      console.log(`${actor.name} lance ${dieSides} : ${detail} = ${total} → ${resultText}`);
+    }
+
 
 }

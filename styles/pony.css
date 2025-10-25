@@ -17,9 +17,11 @@
 .window-app .window-content,.app.sidebar-popout .window-content {background: var(--degrade);border-radius: 20px;color: var(--couleur-violet);border: 2px solid var(--couleur-violetmoyen);box-shadow: 0 0 15px var(--couleur-ombre);}
 
 /* === CHAT === */
-.chat-message {border: none;border-radius: 10px;background: var(--couleur-violetclair);color: var(--couleur-violet);box-shadow: 0 0 8px var(--couleur-violetmoyen);padding: 5px;}
+.chat-message {border: none;border-radius: 10px;background: var(--couleur-roseclair);color: var(--couleur-violet);box-shadow: 0 0 8px var(--couleur-violetmoyen);padding: 5px;}
 .chat-message.whisper,.chat-message.blind {background: var(--couleur-roseclair);color: var(--couleur-violet);}
-
+.sidebar-tab{background: var(--couleur-violetclair),color:var(--couleur-violet)}
+.combat-sidebar .combat-tracker-header .encounter-controls .encounter-title,.entry-name, #sidebar h1, #sidebar h4,#sidebar span,#sidebar label {color:var(--couleur-violet)}
+#compendium .entry-name{color:var(--couleur-blanc)}
 /* === BOUTONS === */
 button, .dialog .dialog-buttons button {background: var(--couleur-amitie);color: var(--couleur-blanc);border: none;border-radius: 10px;padding: 5px 10px;font-weight: bold;transition: all 0.2s ease;}
 .dialog .dialog-buttons button {margin-left: 12px;}
@@ -134,3 +136,6 @@ form button:hover {background: var(--couleur-violet);}
 .tails-of-equestria .inven .name{width: 100px;}
 .tails-of-equestria .inven .descr{width: calc(100% - 180px);display: inline-block;}
 .tails-of-equestria .inven li{background:var(--couleur-rose); margin-bottom:2px}
+
+.resultdice {width: 100%;display: block;text-align: center;padding: 5px;border: solid 1px #000;margin-bottom: 5px}
+.difficulty{margin-bottom: 10px;text-align: center;}
