@@ -4,7 +4,7 @@
       <div class="grid grid-2col">
         <div>
           <div class="grid grid-2col">
-            <label>{{localize 'Pony.Character.Header.Race'}}</label>
+            <label>{{localize 'Pony.Character.Header.Race'}} <span data-action="creer" title="Générer fiche de personnage">✏️</span></label>
             {{formField systemFields.race name="system.race" value=system.race localize=true type="select"}}
           </div>
           <div class="grid grid-2col">
@@ -19,7 +19,7 @@
       </div
     </div>
   </div>
-  <div class="friendly">
+  <div class="friendly" title="Relancer un dé raté — Aider un autre joueur — Réussir l’impossible — Transformer un échec en réussite partielle">
     <svg viewBox="0 0 200 200">
       <defs>
         <path id="textArc" d="M 30,100 A 70,70 0 0,1 170,100" />

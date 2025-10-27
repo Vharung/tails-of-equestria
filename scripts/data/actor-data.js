@@ -48,6 +48,7 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
       }),
       biography: new fields.HTMLField({ required: false, blank: true, initial: "", textSearch: true }),
       level: new fields.NumberField({ required: true, initial: 1, min: 1}),
+      argent: new fields.NumberField({ required: true, initial: 100, min: 0}),
       cutieMark: new fields.StringField({ initial: "" }),
       talent: new fields.StringField({ initial: "" }),
       flaw: new fields.StringField({ initial: "" }),

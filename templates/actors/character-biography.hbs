@@ -11,7 +11,7 @@
 
   <!-- Inventaire -->
   <div class="part inven fond">
-    <label>{{localize 'Pony.Character.Biography.Inventaire'}} <button type="button" class="add-item add-button" data-action="addItem">➕</button></label>
+    <label>{{localize 'Pony.Character.Biography.Inventaire'}} <span class="salaire" title="argent">{{formInput systemFields.argent name="system.argent" value=system.level localize=true}}</span><button type="button" class="add-item add-button" data-action="addItem">➕</button></label>
     <ul class="list">
       {{#each items as |item index|}}
         {{#if (eq item.type "item")}}

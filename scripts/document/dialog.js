@@ -1,8 +1,9 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DifficultyDialogV2 extends HandlebarsApplicationMixin(ApplicationV2) {
-  constructor(resolve, options = {}) {
+  constructor(actor, resolve, options = {}) {
     super(options);
+    this.actor = actor;
     this._resolve = resolve;
   }
 
@@ -10,13 +11,10 @@ export default class DifficultyDialogV2 extends HandlebarsApplicationMixin(Appli
   static DEFAULT_OPTIONS = {
     classes: ["tails-of-equestria", "dialog"],
     tag: "form",
-    position: { 
-      width: 300, 
-      height: "auto" 
-    },
+    position: { width: 320, height: "auto" },
     window: {
       resizable: false,
-      title: "Choix de difficulté",
+      title: "Choix de la difficulté et du talent",
       id: "difficulty-dialog",
       frame: true,
       icon: "fa-solid fa-dice"
@@ -37,8 +35,8 @@ export default class DifficultyDialogV2 extends HandlebarsApplicationMixin(Appli
   /** @override */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
-    
-    // Ajoutez ici les données que vous voulez passer au template
+
+    // Liste des difficultés
     context.difficulties = [
       { value: 0, label: "Facile (0)" },
       { value: 4, label: "Moyen (4)" },
@@ -46,15 +44,21 @@ export default class DifficultyDialogV2 extends HandlebarsApplicationMixin(Appli
       { value: 12, label: "Très difficile (12)" },
       { value: 16, label: "Extrême (16)" }
     ];
-    
+
+    // Liste des talents de l'acteur
+    const talents = this.actor?.items
+      ?.filter(i => i.type === "talent")
+      ?.map(t => ({ id: t.id, name: t.name })) ?? [];
+
+    // Ajout de l'option "Aucun talent"
+    context.talents = [{ id: "none", name: "Aucun talent" }, ...talents];
+
     return context;
   }
 
   /** @override */
   async _onRender(context, options) {
     await super._onRender(context, options);
-    
-    // Focus automatique sur le champ de saisie
     const input = this.element.querySelector("#diff");
     if (input) input.focus();
   }
@@ -62,12 +66,10 @@ export default class DifficultyDialogV2 extends HandlebarsApplicationMixin(Appli
   /** Action : Confirmer */
   static async _onConfirm(event, target) {
     event.preventDefault();
-    
     const form = this.element;
-    const input = form.querySelector("#diff");
-    const value = input ? parseInt(input.value) : 0;
-    
-    this._resolve(value);
+    const diff = parseInt(form.querySelector("#diff").value);
+    const talent = form.querySelector("#talent-select")?.value ?? "none";
+    this._resolve({ diff, talent });
     this.close();
   }
 
@@ -78,9 +80,8 @@ export default class DifficultyDialogV2 extends HandlebarsApplicationMixin(Appli
     this.close();
   }
 
-  /** @override - Gérer la fermeture sans choix */
+  /** @override */
   async close(options = {}) {
-    // Si fermé sans avoir choisi, renvoyer null
     if (this._resolve) {
       this._resolve(null);
       this._resolve = null;

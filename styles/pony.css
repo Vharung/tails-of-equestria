@@ -19,7 +19,7 @@
 /* === CHAT === */
 .chat-message {border: none;border-radius: 10px;background: var(--couleur-roseclair);color: var(--couleur-violet);box-shadow: 0 0 8px var(--couleur-violetmoyen);padding: 5px;}
 .chat-message.whisper,.chat-message.blind {background: var(--couleur-roseclair);color: var(--couleur-violet);}
-.sidebar-tab{background: var(--couleur-violetclair),color:var(--couleur-violet)}
+.sidebar-tab{background: var(--couleur-violetclair);color:var(--couleur-violet)}
 .combat-sidebar .combat-tracker-header .encounter-controls .encounter-title,.entry-name, #sidebar h1, #sidebar h4,#sidebar span,#sidebar label {color:var(--couleur-violet)}
 #compendium .entry-name{color:var(--couleur-blanc)}
 /* === BOUTONS === */
@@ -139,3 +139,5 @@ form button:hover {background: var(--couleur-violet);}
 
 .resultdice {width: 100%;display: block;text-align: center;padding: 5px;border: solid 1px #000;margin-bottom: 5px}
 .difficulty{margin-bottom: 10px;text-align: center;}
+#sidebar span.explosif{color:#da3296;font-weight: bold;}
+.salaire{width: 100px;}

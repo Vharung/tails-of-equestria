@@ -312,8 +312,12 @@ export default class PonyMonsterSheet extends HandlebarsApplicationMixin(ActorSh
             D10: "1d10",
             D12: "1d12",
             D20: "1d20",
+            D26: "1d20+1d6",
             D30: "1d20 + 1d10",
+            D32: "1d20 + 1d12",
+            D40: "2d20",
             D60: "3d20",
+            D80: "4d20",
             D100: "5d20"
           };
           // Récupération du dé associé
