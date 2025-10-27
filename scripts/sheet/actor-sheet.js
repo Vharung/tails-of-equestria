@@ -226,7 +226,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
         },
         "zèbre": {
           body: "d6", mind: "d8", charm: "d6", robustness: 12,
-          talents: ["Toucher Guérisseur", "Pacte Spirituel", "Talent à choisir"],
+          talents: ["Toucher Guérisseur", "Pacte Spirituel", "Talent de Marque de Beauté"],
           quirks: ["Langage en Rimes", "Faiblesse à choisir"]
         }
       };
