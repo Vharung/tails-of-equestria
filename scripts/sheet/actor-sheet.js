@@ -191,7 +191,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
         },
         "longma": {
           body: "d6", mind: "d6", charm: "d8", robustness: 12,
-          talents: ["Vol", "Souffle Élémentaire", "Ascétisme Draconique", "Talent à choisir"],
+          talents: ["Vol", "Souffle Élémentaire", "Ascétisme Draconique", "Talent de Marque de Beauté"],
           quirks: ["Colérique", "Faiblesse à choisir"]
         },
         "minotaure": {
