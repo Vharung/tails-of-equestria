@@ -37,7 +37,7 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
           [RACE.griffon]:game.i18n.localize("Pony.Character.Data.Race.Griffon"),
           [RACE.hypogriffe]:game.i18n.localize("Pony.Character.Data.Race.Hippogriffe"),
           [RACE.kirin]:game.i18n.localize("Pony.Character.Data.Race.Kirin"),
-          [RACE.papillon]:game.i18n.localize("Pony.Character.Data.Race.Papillon"),
+          [RACE.longma]:game.i18n.localize("Pony.Character.Data.Race.Longma"),
           [RACE.pegase]:game.i18n.localize("Pony.Character.Data.Race.Pegasse"),          
           [RACE.poney]:game.i18n.localize("Pony.Character.Data.Race.Poney"),
           [RACE.licorne]:game.i18n.localize("Pony.Character.Data.Race.Licorne"),
