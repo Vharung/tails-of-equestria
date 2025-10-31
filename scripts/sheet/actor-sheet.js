@@ -37,7 +37,8 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
     header: { template: "systems/tails-of-equestria/templates/actors/character-header.hbs" },
     nav: { template: "systems/tails-of-equestria/templates/actors/character-nav.hbs" },
     biography: { template: "systems/tails-of-equestria/templates/actors/character-biography.hbs" },
-    main: { template: "systems/tails-of-equestria/templates/actors/character-main.hbs" }
+    main: { template: "systems/tails-of-equestria/templates/actors/character-main.hbs" },
+    config: { template: "systems/tails-of-equestria/templates/actors/character-config.hbs" }
   };
 
 
@@ -444,6 +445,7 @@ export default class PonyCharacterSheet extends HandlebarsApplicationMixin(Actor
     const tabs = {
       carac: { id: "carac", group: "sheet", icon: "fa-solid fa-shapes", label: "Pony.Labels.carac" },
       items: { id: "items", group: "sheet", icon: "fa-solid fa-shapes", label: "Pony.Labels.items" },
+      config: { id: "config", group: "sheet", icon: "fa-solid fa-shapes", label: "Pony.Labels.config" }
     };
 
     for (const v of Object.values(tabs)) {

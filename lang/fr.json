@@ -81,7 +81,8 @@
 	    },
 	    "Labels":{
 	    	"carac":"Stastitiques",
-	    	"items":"Histoire et inventaire"
+	    	"items":"Histoire et inventaire",
+	    	"config":"Configuration"
 	    }
 	}
 }

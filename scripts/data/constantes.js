@@ -56,3 +56,12 @@ export const HARMONY = {
     generosite:"generosite",
     bonte:"bonte"
 };
+export const COULEUR = {
+    corps1:"corps1",
+    corps2:"corps2",
+    yeux:"yeux",
+    corne:"corne",
+    ailes:"ailes",
+    criniere:"criniere",
+    queue:"queue"
+};

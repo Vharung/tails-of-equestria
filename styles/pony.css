@@ -141,3 +141,6 @@ form button:hover {background: var(--couleur-violet);}
 .difficulty{margin-bottom: 10px;text-align: center;}
 #sidebar span.explosif{color:#da3296;font-weight: bold;}
 .salaire{width: 100px;}
+
+.tails-of-equestria .image{border: solid 1px #000;width: 50%;display: inline-block;background: url("../assets/race/fond1.png") center;background-size: cover;}
+.tails-of-equestria .configuration{display: inline-block;width: 300px;height: 500px;margin-left: 10px;position: absolute;background:var(--couleur-bleu)}

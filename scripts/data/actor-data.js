@@ -1,4 +1,4 @@
-import {RACE, DES, HARMONY} from "./constantes.js";
+import {RACE, DES, HARMONY, COULEUR} from "./constantes.js";
 export default class PonyCharacterData extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -25,7 +25,6 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
         initial: RACE.poney,
         choices: {
           [RACE.alicorne]:game.i18n.localize("Pony.Character.Data.Race.Alicorne"),
-          [RACE.bison]:game.i18n.localize("Pony.Character.Data.Race.Bison"),
           [RACE.changelin]:game.i18n.localize("Pony.Character.Data.Race.Changelin"),
           [RACE.caribou]:game.i18n.localize("Pony.Character.Data.Race.Caribou"),
           [RACE.cerf]:game.i18n.localize("Pony.Character.Data.Race.Cerf"),
@@ -108,7 +107,84 @@ export default class PonyCharacterData extends foundry.abstract.DataModel {
       talents: new fields.ArrayField(new fields.ObjectField()),
 
       /** 🔹 Notes / historique */
-      notes: new fields.HTMLField({ initial: "" })
+      notes: new fields.HTMLField({ initial: "" }),
+      couleur: new fields.SchemaField({
+        corps1: new fields.StringField({ required: true, initial: "#D3A1CA"}),
+        corps2: new fields.StringField({ required: true, initial: "#FFECDB" }),
+        yeux: new fields.StringField({ required: true, initial: "#129A78" }),
+        corne: new fields.StringField({ required: true, initial: "#AD2225" }),
+        ailes: new fields.StringField({ required: true, initial: "#D3A1CA" }),
+        criniere: new fields.StringField({ required: true, initial: "#C05FA5" }),
+        queue: new fields.StringField({ required: true, initial: "#C05FA5" })
+      }),
+     coupe: new fields.StringField({ 
+      required: true,
+      initial: "aucune",
+      choices: {
+        "aucune":"aucune",
+        "coupe1": "Coupe 1",
+        "coupe2": "Coupe 2",
+        "coupe3": "Coupe 3",
+        "coupe4": "Coupe 4",
+        "coupe5": "Coupe 5",
+        "coupe6": "Coupe 6",
+        "coupe7": "Coupe 7",
+        "coupe8": "Coupe 8",
+        "coupe9": "Coupe 9",
+        "coupe10": "Coupe 10",
+        "coupe11": "Coupe 11",
+        "coupe12": "Coupe 12",
+        "coupe13": "Coupe 13",
+        "coupe14": "Coupe 14",
+        "coupe15": "Coupe Changelin",
+        "coupe16": "Casque Caribou"
+      }
+    }),
+    queue: new fields.StringField({ 
+      required: true,
+      initial: "aucune",
+      choices: {
+        "aucune":"aucune",
+        "coupe1": "Queue 1",
+        "coupe2": "Queue 2",
+        "coupe3": "Queue 3",
+        "coupe4": "Queue 4",
+        "coupe5": "Armure Caribou"
+      }
+    }),
+    corne: new fields.StringField({ 
+      required: true,
+      initial: "aucune",
+      choices: {
+        "aucune":"aucune",
+        "coupe1": "Corne 1",
+        "coupe2": "Corne 2",
+        "coupe3": "Corne 3",
+        "coupe4": "Corne 4"
+      }
+    }),
+    frange: new fields.StringField({ 
+      required: true,
+      initial: "aucune",
+      choices: {
+        "aucune":"aucune",
+        "coupe1": "Frange 1",
+        "coupe2": "Frange 2",
+        "coupe3": "Frange 3",
+        "coupe4": "Frange 4",
+        "coupe5": "Frange 5",
+        "coupe6": "Frange 6",
+        "coupe7": "Frange 7",
+        "coupe8": "Frange 8",
+        "coupe9": "Frange 9",
+        "coupe12": "Frange 10",
+        "coupe13": "Changelin",
+        "coupe10": "Crinière 1",
+        "coupe11": "Crinière 2"
+        
+      }
+    })
+
     };
   }
 }
